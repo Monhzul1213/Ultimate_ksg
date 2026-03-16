@@ -1,0 +1,18 @@
+.avatar-uploader{
+  width: 128px;
+  height: 128px;
+}
+
+
+
+.list-label {
+  font-size: 13pt;
+  color: black;
+  margin-bottom: 0px;
+}
+
+.select-fontsize .ant-select-lg .ant-select-selection__rendered {
+    line-height: 38px;
+   font-size: 13pt;
+    font-family: Arial;
+}

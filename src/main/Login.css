@@ -1,0 +1,46 @@
+.login-form {
+  width: 400px;
+  margin: 0 auto;
+  padding: 0;
+}
+@media only screen and (max-width: 576px) {
+  .login-form {
+    width: 100%;
+    margin: 0;
+    padding: 0 50px;
+  }
+}
+.login-form .ant-form-item {
+  margin-bottom: 20px;
+}
+.login-form .ant-input-prefix {
+  left: 20px;
+}
+.login-form .ant-input {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13pt;
+  padding-left: 50px !important;
+}
+.login-form-forgot {
+  float: right;
+}
+
+.select-fontsize1 .ant-select-lg .ant-select-selection--single {
+  height: 60px;
+  font-size: 12pt;
+  font-family: Arial;
+  padding: 10px 0;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}
+.select-fontsize1 .ant-select-open .ant-select-selection {
+  box-shadow: none;
+}
+
+.select-fontsize1 .ant-select-focused .ant-select-selection,
+.ant-select-selection:focus .ant-select-selection:active {
+  box-shadow: none;
+}

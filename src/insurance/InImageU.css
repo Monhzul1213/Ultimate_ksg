@@ -1,0 +1,33 @@
+.upload-w .ant-upload .ant-upload-select {
+  display: block;
+}
+
+.an-btn .ant-btn {
+  color: #00358d;
+}
+.an-btn .ant-btn:focus {
+  color: #00358d;
+  background-color: #fff;
+  border-color: #00358d;
+}
+
+.buton7:hover {
+  background-color: #00358d;
+  color: white;
+}
+
+.anb-bt,
+.ant-btn:focus {
+  color: #1890ff;
+  background-color: #fff;
+  border-color: #fff;
+}
+.a-color .ant-upload-list-item-error .ant-upload-list-item-name {
+  color: black !important;
+}
+
+.a-color .ant-upload-list-item-error,
+.ant-upload-list-item-error .anticon-paper-clip,
+.ant-upload-list-item-error .ant-upload-list-item-name {
+  color: black !important;
+}

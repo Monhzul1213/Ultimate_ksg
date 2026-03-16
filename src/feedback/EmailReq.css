@@ -1,0 +1,13 @@
+.step-for .ant-form-item-label > label::after {
+  content: none !important;
+}
+
+.ant-form-item-required::before {
+  display: inline-block;
+  margin-right: 4px;
+  color: #f5222d;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: none;
+}

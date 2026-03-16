@@ -1,0 +1,48 @@
+.c_padd .ant-card-body {
+  padding: 0px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+}
+
+.c_padd .ant-form-item {
+  margin-bottom: 0px;
+}
+.hh {
+  display: flex;
+  margin-bottom: 3px;
+}
+
+.hh form {
+  flex: 1;
+}
+
+.button_w .ant-btn {
+  color: #00358d;
+  height: 111px;
+}
+
+@media all and (max-width: 1599px) {
+  .button_w .ant-btn {
+    height: 111px !important;
+  }
+}
+
+@media all and (max-width: 1199px) {
+  .button_w .ant-btn {
+    height: 191px !important;
+  }
+}
+@media all and (max-width: 991px) {
+  .button_w .ant-btn {
+    height: 391px !important;
+  }
+}
+
+.button1:hover {
+  background-color: #00358d;
+  color: white;
+}
+
+.button3 {
+  color: #00358d;
+}

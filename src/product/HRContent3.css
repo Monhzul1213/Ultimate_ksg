@@ -1,0 +1,45 @@
+.info-left {
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+  }
+  
+  @media only screen and (max-width: 576px) {
+    .info-left {
+      border-right: none;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 20px;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .info-left {
+      border-right: none;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 20px;
+    }
+  }
+  
+  @media only screen and (max-width: 992px) {
+    .info-left {
+      border-right: none;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 20px;
+    }
+  }
+  
+  .card-padd .ant-card-body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    zoom: 1;
+  }
+  
+  .jh .ant-progress-status-success .ant-progress-bg {
+    background-color: #1890ff;
+  }
+  .jh .ant-progress-success-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #1890ff;
+  }
+  

@@ -1,0 +1,30 @@
+th.column-header-left {
+  text-align: left !important;
+}
+.dot {
+  height: 16px;
+  width: 0px;
+  border-radius: 70%;
+  display: inline-block;
+}
+
+.ant-table-header-column,
+.ant-table-column-sorters,
+.ant-table-column-title {
+  width: 100% !important;
+}
+
+.ant-table-column-title {
+  font-size: 11pt !important;
+  font-weight: bold !important;
+  color: #4f4f4f !important;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ant-tag {
+  font-size: 10pt !important;
+  font-family: Arial !important;
+}

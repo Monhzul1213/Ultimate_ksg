@@ -1,0 +1,42 @@
+.ant-form-item-required::before {
+  content: none !important;
+}
+.ant-upload-list {
+  display: none;
+}
+
+.ant-table-pagination.ant-pagination {
+  display: inline-table;
+}
+
+.table-head-withborder thead > tr > th {
+  border-top: 1px solid #dedddd !important;
+  border-bottom: 1px solid #dedddd !important;
+}
+
+.table-row-even {
+  background-color: #f0f2f5;
+}
+
+.table-row-odd {
+  background-color: #ffffff;
+}
+.dd .ant-btn {
+  color: #00358d;
+}
+.button2:hover {
+  background-color: #00358d;
+  color: white;
+}
+
+.kk,
+.ant-btn:focus {
+  color: #00358d;
+  background-color: #fff;
+  border-color: #00358d;
+}
+
+.stepForm {
+  max-width: 650px;
+  margin: 40px auto 0;
+}

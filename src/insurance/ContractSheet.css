@@ -1,0 +1,44 @@
+.Display{
+    
+    display: flex;
+    background-color: white;
+}
+
+.DisplayTwo{
+    width:40%;
+    border: 1px solid black
+}
+.IconStyle{
+    font-size: 25px;
+    background-color: #0099cc;
+    padding: 14px;
+    color: white;
+    border-radius: 48px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.error {
+     border: 1px solid red; 
+}
+.ant-input-number-input{
+    text-align: right !important;
+}
+.ant-input-number-handler-wrap {
+  display: none !important;
+}
+th.column-header-center {
+  text-align: center !important;
+}
+.react-resizable {
+  position: relative;
+  background-clip: padding-box;
+}
+.react-resizable-handle {
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  bottom: 0;
+  right: -5px;
+  cursor: col-resize;
+  z-index: 1;
+}

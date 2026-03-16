@@ -1,0 +1,79 @@
+th.column-header-left {
+  text-align: left !important;
+}
+
+.ant-table-header-column,
+.ant-table-column-sorters,
+.ant-table-column-title {
+  width: 100% !important;
+}
+
+.ant-table-column-title {
+  font-size: 10pt !important;
+  font-weight: bold !important;
+  color: #4f4f4f !important;
+}
+
+.ant-table-tbody {
+  font-size: 10pt !important;
+  font-weight: normal !important;
+  color: #6b747b !important;
+}
+
+.select-input-hei .ant-select-selection--single {
+  height: 52px;
+}
+
+.place .ant-select-selection__rendered {
+  line-height: 3.5;
+}
+
+.date-picker .ant-calendar-picker-input.ant-input {
+  line-height: 1.5 !important;
+  height: 52px !important;
+}
+
+th.column-header-left {
+  text-align: left !important;
+}
+
+.ant-table-pagination.ant-pagination {
+  display: inline-table;
+}
+
+.table-head-withborder thead > tr > th {
+  border-top: 1px solid #dedddd !important;
+  border-bottom: 1px solid #dedddd !important;
+}
+
+.table-row-even {
+  background-color: #f0f2f5;
+}
+
+.table-row-odd {
+  background-color: #ffffff;
+}
+.qq .ant-btn {
+  color: #00358d;
+}
+@media all and (max-width: 991px) {
+  .qq .ant-btn {
+    height: 231px !important;
+  }
+}
+
+.button1:hover {
+  background-color: #00358d;
+  color: white;
+}
+.button3 {
+  color: #00358d;
+}
+.hh {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.hh form {
+  flex: 1;
+}

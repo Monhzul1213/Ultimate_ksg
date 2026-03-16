@@ -1,0 +1,19 @@
+.table-row-even {
+    background-color: #f0f2f5;
+}
+.table-row-odd {
+    background-color: #ffffff;
+}
+.table-column-noborder {
+    border-bottom-width: 0px !important;
+}
+.table-head-withborder thead > tr > th {
+    border-top: 1px solid #dedddd !important;
+    border-bottom: 1px solid #dedddd !important;
+}
+td.table-column-right {
+  text-align: right !important;
+}
+td.table-column-center {
+  text-align: center !important;
+}

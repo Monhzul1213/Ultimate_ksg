@@ -1,0 +1,61 @@
+.container {
+  padding: 8px;
+}
+
+.table-operations {
+  margin-bottom: 16px;
+}
+
+.table-operations > button {
+  margin-right: 8px;
+}
+
+.BtnReject {
+  margin: 5px;
+}
+
+.BtnConfirm {
+  margin: 5px;
+  background-color: rgba(245, 245, 245);
+  color: rgba(24, 144, 255);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.ant-empty-description {
+  color: white;
+}
+
+.ant-modal-mask {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.cancelContent {
+  padding-top: 24px;
+  text-align: center;
+}
+.cancelContent1 {
+  text-align: center;
+}
+.cancelBtn {
+  margin-top: 12px;
+}
+
+.table-row-even {
+  background-color: #f0f2f5;
+}
+.table-row-odd {
+  background-color: #ffffff;
+}
+.table-column-noborder {
+  border-bottom-width: 0px !important;
+}
+.table-head-withborder thead > tr > th {
+  border-top: 1px solid #dedddd !important;
+  border-bottom: 1px solid #dedddd !important;
+}
+td.table-column-right {
+text-align: right !important;
+}
+td.table-column-center {
+text-align: center !important;
+}

@@ -1,0 +1,156 @@
+.container {
+  display: block;
+  margin:24px;
+  margin-top:0px;
+  padding: 0;
+}
+
+.containerHeader {
+  display: block;
+  margin: 0px;
+}
+
+.tableTitle{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.tableCategory{
+  margin-bottom: 24px;
+}
+
+.StatisticLine{
+  padding-right: 3px;
+  border-right: 1px solid #e8e8e8;
+}
+
+.ColTable{
+	padding-right: 8px !important;
+}
+
+.ColTable1{
+	padding-left: 16px !important;
+
+}
+
+.prefix{
+	height: 50px;
+}
+
+.Cardheader{
+	display: flex;
+	justify-content: flex-end;
+}
+
+.CardheaderIcon1{
+	background-color: #18A6E4;
+}
+
+.CardheaderIcon2{
+	background-color: #0CCEB5;
+}
+
+.CardheaderIcon3{
+	background-color: #E51865;
+}
+
+.CardheaderIcon{
+	background-color: #f56a00;
+}
+
+.CardheaderTitle{
+	position: absolute;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.CardheaderValue{
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 40px;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0;
+}
+
+.CardheaderValue1{
+	display: flex;
+	font-size: 14px;
+	margin: 0;
+}
+
+.dayValue{
+	display: flex;
+	font-size: 16px;
+	margin: 0;
+	justify-content: flex-end;
+	padding-right: 40px;
+}
+
+.CardheaderDayValue{
+	display: flex;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0;	
+	width: 50px;
+	justify-content: flex-end;
+}
+
+.cardContainer
+{
+	height: 60px;
+}
+
+.CardIcon{
+	height: 40px;
+	width: 40px;
+	border-radius: 0px;
+}
+
+.dayValue1{
+	display: flex;
+	font-size: 16px;
+	margin: 0;
+}
+
+.CardheaderValue2{
+	display: flex;
+	font-size: 14px;
+	margin: 0;
+	padding-left: 5px;
+}
+
+.ChartContainer{
+	display: flex;
+	height: 300px;
+	width: calc(100vw - 250px - 68px);
+	margin-left: 25px;
+	background-color: #fff;
+	border-width: 10px;
+}
+
+.Chart1{
+	height: 300px;
+	width: 50%;
+	background-color: #fff;
+}
+
+.Chart2{
+	height: 300px;
+	width: 50%;
+	background-color: #fff;
+}
+
+.tableColumn{
+	text-align: left;
+	min-width: 100px;
+}
+
+.tableColumnNumber{
+	text-align: right;
+}
+
+.tableDetail{
+	margin: 24px;
+}

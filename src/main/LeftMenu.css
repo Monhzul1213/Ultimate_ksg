@@ -1,0 +1,136 @@
+.logo1 {
+  display: flex;
+  padding-top: 0px;
+  height: 50px;
+  padding-left: 0px;
+  margin-left: 16px;
+  margin-bottom: 18px;
+  margin-top: 16px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+  font-size: 24px;
+}
+
+.LogoTitle {
+  display: flex;
+  padding-top: 0px;
+  height: 50px;
+  margin-left: 21px;
+  margin-bottom: 0px;
+  margin-top: 16px;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+  font-size: 24px;
+}
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding-top: 5px;
+  padding-left: 25px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.Header {
+  margin: 10;
+  padding-left: 0;
+  padding-right: 0;
+  box-shadow: 0px 1px 4px rgba(0, 21, 41, 0.1);
+  background: rgba(255, 255, 255);
+  z-index: 100;
+}
+
+.ContentHeader {
+  display: flex;
+  font-size: 18px;
+  line-height: 64px;
+  padding-right: 30px;
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.3s;
+  justify-content: flex-end;
+  float: right;
+  padding-top: 15px;
+}
+
+.customDropdown {
+  padding: 0;
+  margin: 0;
+  width: 150px;
+  left: auto !important;
+  right: 10px;
+}
+.customDropdown .ant-dropdown-menu {
+  padding: 0px;
+  margin-top: -12px;
+  margin-left: 20px;
+}
+
+.customDropdown .ant-dropdown-menu-item {
+  line-height: 30px;
+}
+
+.DropDownTitle {
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 14px;
+  height: 40px;
+  width: 200px;
+  float: right;
+}
+
+.DropDownUser {
+  margin-left: 5px;
+  padding-right: 10px;
+}
+
+.MenuLayout {
+  background: linear-gradient(#26a3dd 0%, #20285d 100%);
+  position: relative;
+  z-index: 1000;
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35) !important;
+}
+
+.MenuItemGroupTitle {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+.Menu {
+  background: transparent;
+}
+
+.Menu .ant-menu-inline.ant-menu-sub {
+  background: transparent;
+  box-shadow: none;
+}
+
+.Menu .ant-menu-item {
+  background: transparent;
+  margin: 0px !important;
+}
+
+.Menu .ant-menu-item-selected {
+  margin: 0px !important;
+}
+
+.SubMenu .ant-menu-sub {
+  background: linear-gradient(#26a3dd 0%, #20285d 100%);
+}
+
+.MainContainer1 {
+  display: block;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: calc(100vh - 64px);
+  padding: 0px;
+}

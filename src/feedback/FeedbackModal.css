@@ -1,0 +1,28 @@
+th.column-header-left {
+  text-align: left !important;
+}
+.ant-table-header-column,
+.ant-table-column-sorters,
+.ant-table-column-title {
+  width: 100% !important;
+}
+.ant-table-column-title {
+  font-size: 11pt !important;
+  font-weight: bold !important;
+  color: #4f4f4f !important;
+}
+.spin-loading .ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
+  position: absolute;
+  top: 400%;
+}
+td.table-column-right {
+  text-align: right !important;
+}
+td.table-column-center {
+  text-align: center !important;
+}
+.select-fontsize .ant-select-lg .ant-select-selection__rendered {
+  line-height: 38px;
+  font-size: 13pt;
+  font-family: Arial;
+}

@@ -1,0 +1,68 @@
+.login-container {
+  height: 100vh;
+}
+
+.login-left {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Carousel бүрэн өндөртэй */
+.login-carousel,
+.login-slide {
+  height: 100vh;
+}
+
+/* Нэг слайд – background зураг */
+.login-slide {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* Зургийн дээрх текстийн блок */
+.login-slide-content {
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+}
+
+.login-right {
+  background-color: white;
+}
+
+.login-logo {
+  text-align: center;
+  margin-top: 140px;
+  margin-bottom: 140px;
+}
+
+.login-cpny {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+}
+
+.login-cpny a:link,
+.login-cpny a:visited {
+  color: #6b747b;
+}
+
+.login-cpny a:hover,
+.login-cpny a:active {
+  color: #00358d;
+}
+
+.wrapperClassName {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.MainContent {
+  min-height: 100vh;
+}

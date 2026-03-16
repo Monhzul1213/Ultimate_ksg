@@ -1,0 +1,42 @@
+th.column-header-left {
+  text-align: left !important;
+}
+
+.ant-table-header-column,
+.ant-table-column-sorters,
+.ant-table-column-title {
+  width: 100% !important;
+}
+
+.ant-table-column-title {
+  font-size: 11pt !important;
+  font-weight: bold !important;
+  color: #4f4f4f !important;
+}
+
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ant-tag {
+    font-size: 10pt !important;
+    font-family: Arial !important;
+  
+}
+
+.Request {
+  position: absolute;
+  top: 20px;
+  right: 27px;
+  height: 37px;
+}
+
+
+@media screen and (max-width: 500px) {
+  .Request {
+    position: inherit;
+    right: 27px;
+    padding-bottom: 50px;
+  }
+}

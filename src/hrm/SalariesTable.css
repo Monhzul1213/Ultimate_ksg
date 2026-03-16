@@ -1,0 +1,50 @@
+th.column-header-left {
+  text-align: left !important;
+}
+
+.ant-table-header-column,
+.ant-table-column-sorters,
+.ant-table-column-title {
+  width: 100% !important;
+}
+
+.ant-table-column-title {
+  font-size: 11pt !important;
+  font-weight: bold !important;
+  color: #4f4f4f !important;
+}
+
+.spin-loading .ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
+  position: absolute;
+  top: 400%;
+}
+
+.table-row-even {
+  background-color: #f0f2f5;
+}
+.table-row-odd {
+  background-color: #ffffff;
+}
+.table-column-noborder {
+  border-bottom-width: 0px !important;
+}
+.table-head-withborder thead > tr > th {
+  border-top: 1px solid #dedddd !important;
+  border-bottom: 1px solid #dedddd !important;
+}
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  padding: 12px 12px;
+  overflow-wrap: break-word;
+}
+td.table-column-right {
+  text-align: right !important;
+}
+td.table-column-center {
+  text-align: center !important;
+}
+
+.gshj .MainContainer1 {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
