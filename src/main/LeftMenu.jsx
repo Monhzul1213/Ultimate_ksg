@@ -11,10 +11,12 @@ import request from "@/insurance/PostRequest";
 import { Layout, Menu, Icon, Avatar, Dropdown, Spin } from "antd";
 import "./LeftMenu.css";
 import logo from "@/image/Logo_104X104.png";
-import logo1 from "@/image/Logo_104X104_1.png";
 import loadingImg from "@/image/loading.gif";
 import male from "@/image/male.png";
 import female from "@/image/female.png";
+import logo1 from "@/image/Logo_104X104_1.png";
+import CryptoJS from "crypto-js";
+import HRDashboard from "../dashboard/HRDashboard";
 import LoginPasswordChangeModal from "../hrm/LoginPasswordChangeModal";
 
 const { Header, Content, Sider } = Layout;
@@ -26,16 +28,23 @@ const loadingIcon = (
 class compon extends React.Component {
   constructor(props) {
     super(props);
-
     const cookieUser = cookie.load("LoggedSysuser");
-
     this.state = {
       cookieUser,
       moduls: props.moduls,
+      user: props.user,
       loading: false,
+      LoginEmpCode: props.LoginEmpCode,
+      EmpFLName: props.EmpFLName,
+      Gender: props.Gender,
+      LoginToken: props.LoginToken,
+      LoginCompanyID: "",
       mainloading: false,
       collapsed: false,
-      isNewPass: cookieUser.FirstLoginPassChange,
+      EmpCode: cookieUser.EmpCode,
+      isOtpResponse: props.isOtpResponse,
+      isOtpModalVisible: props.isOtpModalVisible,
+      isNewPass: props.isNewPass,
     };
   }
 
@@ -53,11 +62,35 @@ class compon extends React.Component {
     this.setState({ mainloading: visible });
   };
 
+  componentDidMount() {    
+    this.setState({
+      LoginCompanyID: this.state.user,
+    });
+  }
   render() {
+    const { t } = this.props;
     const userMenu = (
       <Menu>
         <Menu.Item key="0">
-          <a href={`#/Profile/${this.state.cookieUser.EmpCode}`}>Profile</a>
+          <a
+            href="#/Profile"
+            onClick={() => {
+              const encryptedEmpCode = CryptoJS.AES.encrypt(
+                this.state.EmpCode,
+                "secretKey"
+              ).toString();
+
+              // Шифрлэсэн утгыг localStorage-д хадгална
+              localStorage.setItem("id0356123", encryptedEmpCode);
+              if (window.location.hash === "#/Profile") {
+                window.location.reload();
+              } else {
+                window.location.hash = "#/Profile";
+              }
+            }}
+          >
+            Profile
+          </a>
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="2">
@@ -66,6 +99,8 @@ class compon extends React.Component {
             href=""
             onClick={() => {
               cookie.remove("LoggedSysuser");
+              localStorage.removeItem("id0356123");
+
               window.location.reload();
             }}
           >
@@ -89,19 +124,14 @@ class compon extends React.Component {
           className="MenuLayout"
         >
           <div className={!this.state.collapsed ? "logo1" : "LogoTitle"}>
-            <img
-              src={this.state.collapsed ? logo1 : logo}
-              alt="Logo"
-              style={
-                {
-                  // width: 46,
-                  // height: 55,
-                  // backgroundColor: "white",
-                  // padding: 5,
-                  // borderRadius: 7,
-                }
-              }
-            />{" "}
+            <a href="#/HRDashboard">
+              <img
+                src={this.state.collapsed ? logo1 : logo}
+                alt="Logo"
+                style={{ cursor: "pointer", width: 155,
+                  height: 50 }}
+              />
+            </a>
           </div>
 
           <Menu theme="dark" mode="inline" className="Menu">
@@ -209,6 +239,9 @@ class compon extends React.Component {
                     }
                   >
                     <Switch>
+                      <Route exact path="/">
+                        <Redirect to="/HRDashboard" />
+                      </Route>
                       {this.state.moduls &&
                         this.state.moduls.Screen &&
                         this.state.moduls.Screen.map((screen) => {
@@ -241,6 +274,7 @@ class compon extends React.Component {
                             />
                           );
                         })}
+                      <Route path="/HRDashboard" component={HRDashboard} />
                       <Route component={NotMatch} />
                     </Switch>
                   </Suspense>

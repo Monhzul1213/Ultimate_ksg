@@ -65,6 +65,7 @@ class compon extends React.Component {
       cookiePass: "",
       device: "",
       moduls: [],
+      user: "",
       isOtpModalVisible: false,
 
       // 🔹 Зүүн талын тохиргоо (config.txt-оос уншина)
@@ -208,6 +209,7 @@ class compon extends React.Component {
           a: 0,
           loading: false,
           moduls: data.data.retData.moduls,
+          user: data.data.retData.LoggedSysuser.CompanyID,
         });
       } else {
         console.log(data);
@@ -358,7 +360,7 @@ class compon extends React.Component {
     // logged in state
     return (
       <Layout className="MainContent">
-        <LeftMenu moduls={this.state.moduls} />
+        <LeftMenu moduls={this.state.moduls} user={this.state.user} />
       </Layout>
     );
   }

@@ -1,0 +1,93 @@
+.con3_row{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.text1{
+  font-size: 15px;
+  font-weight: 500;
+  width: 180px;
+}
+.text2{
+  font-size: 15px;
+  font-weight: 500;
+}
+.text3{
+  font-size: 15px;
+  font-weight: 500;
+  text-align: right;
+  width: 200px;
+}
+.text4{
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 20px;
+}
+.text5{
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'italic';
+  color: rgb(75, 76, 77);
+  border-bottom: 1px solid;
+  width: 200px;
+  padding: 3px;
+}
+.card-padding1 .ant-card-body {
+  padding: 15px;
+  zoom: 1;
+  min-height: 103px;
+}
+
+@media only screen and (max-width: 1679px) {
+  .card-padding1 .ant-card-body {
+    min-height: 126px;
+  }
+}
+@media only screen and (max-width: 1599px) {
+  .card-padding1 .ant-card-body {
+    min-height: 103px;
+  }
+}
+
+@media only screen and (max-width: 1198px) {
+  .card-padding1 .ant-card-body {
+    min-height: 103px;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .card-padding1 .ant-card-body {
+    min-height: 126px;
+  }
+}
+@media only screen and (max-width: 774px) {
+  .card-padding1 .ant-card-body {
+    min-height: 147px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .card-padding1 .ant-card-body {
+    min-height: 103px;
+  }
+}
+
+@media only screen and (max-width: 764px) {
+  .card-padding1 .ant-card-body {
+    min-height: 126px;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .card-padding1 .ant-card-body {
+    min-height: 103px;
+  }
+}
+
+@media only screen and (max-width: 406px) {
+  .card-padding1 .ant-card-body {
+    min-height: 126px;
+  }
+}
+.card-grid.ant-card-grid{
+  -webkit-box-shadow: none;
+}

@@ -1,0 +1,62 @@
+.card-padding .ant-card-body {
+    padding: 10px;
+    zoom: 1;
+    min-height: 103px;
+  }
+  
+  @media only screen and (max-width: 1679px) {
+    .card-padding .ant-card-body {
+      min-height: 126px;
+    }
+  }
+  @media only screen and (max-width: 1599px) {
+    .card-padding .ant-card-body {
+      min-height: 103px;
+    }
+  }
+  
+  @media only screen and (max-width: 1198px) {
+    .card-padding .ant-card-body {
+      min-height: 103px;
+    }
+  }
+  
+  @media only screen and (max-width: 1025px) {
+    .card-padding .ant-card-body {
+      min-height: 126px;
+    }
+  }
+  @media only screen and (max-width: 774px) {
+    .card-padding .ant-card-body {
+      min-height: 147px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .card-padding .ant-card-body {
+      min-height: 103px;
+    }
+  }
+  
+  @media only screen and (max-width: 764px) {
+    .card-padding .ant-card-body {
+      min-height: 126px;
+    }
+  }
+  @media only screen and (max-width: 575px) {
+    .card-padding .ant-card-body {
+      min-height: 103px;
+    }
+  }
+  
+  @media only screen and (max-width: 406px) {
+    .card-padding .ant-card-body {
+      min-height: 126px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .responsive-grid {
+      flex: 1 1 45%;
+      max-width: 45%;
+    }
+  }

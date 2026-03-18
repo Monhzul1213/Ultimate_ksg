@@ -508,7 +508,7 @@ class compon extends React.Component {
 					data.push(this.tableData.data1[i1]);
 				}
 			}
-			return <Table bordered={false} size="small" columns={this.table1.columns} style={{ margin: 0 }} style={{ background: '#EDF1FF' }} dataSource={data} pagination={false} />;
+			return <Table bordered={false} size="small" columns={this.table1.columns} style={{ margin: 0, background: '#EDF1FF' }} dataSource={data} pagination={false} />;
 		};
 		return (
 			<div className="container">
