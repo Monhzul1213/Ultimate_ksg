@@ -121,6 +121,15 @@ export default class HrContent8 extends React.Component {
       align: "right",
       render: (value) => this.formatNumber(value),
     },
+    {
+      title: "Жилийн өссөн дүн",
+      dataIndex: "TotalAmount",
+      key: "TotalAmount",
+      width: 140,
+      fixed: "right",
+      align: "right",
+      render: (value) => this.formatNumber(value),
+    },
   ];
 
   render() {

@@ -1,31 +1,74 @@
-import React, { useEffect, useRef } from "react";
-import { Row, Col, Card } from "antd";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Row, Col, Card, Tabs } from "antd";
 import "./HrContent2.css";
 import Chart from "chart.js/auto";
 
-const HrContent6 = ({ data }) => {  
+const { TabPane } = Tabs;
+
+const monthOrder = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+
+const HrContent6 = ({ data }) => {
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
 
-  useEffect(() => {
-    if (!data || data.length === 0) return;
+  const groupedData = useMemo(() => {
+    if (!data || data.length === 0) return {};
 
-    const parsed = data.map((item) => ({
-      month: item.MonthName,
-      values: JSON.parse(item.Data),
-      avg: item.BeforeYearAVG,
-    }));
+    const result = data.reduce((acc, item) => {
+      const year = String(item.YearNo);
+      if (!acc[year]) acc[year] = [];
+      acc[year].push(item);
+      return acc;
+    }, {});
+
+    Object.keys(result).forEach((year) => {
+      result[year].sort(
+        (a, b) => monthOrder.indexOf(a.MonthName) - monthOrder.indexOf(b.MonthName)
+      );
+    });
+
+    return result;
+  }, [data]);
+
+  const years = useMemo(() => Object.keys(groupedData).sort(), [groupedData]);
+  const [activeYear, setActiveYear] = useState("");
+
+  useEffect(() => {
+    if (years.length > 0 && !activeYear) {
+      setActiveYear(years[years.length - 1]);
+    }
+  }, [years, activeYear]);
+
+  useEffect(() => {
+    if (!activeYear || !groupedData[activeYear] || !canvasRef.current) return;
+
+    const yearData = groupedData[activeYear];
+
+    const parsed = yearData.map((item) => {
+      let values = [0, 0, 0, 0];
+
+      try {
+        values = JSON.parse(item.Data || "[0,0,0,0]");
+      } catch (e) {}
+
+      return {
+        month: item.MonthName,
+        values: values.map((v) => Number(v || 0)),
+      };
+    });
 
     const labels = parsed.map((i) => i.month);
-
     const overtime = parsed.map((i) => i.values[0]);
     const absent = parsed.map((i) => i.values[1]);
     const free = parsed.map((i) => i.values[2]);
     const late = parsed.map((i) => i.values[3]);
-    const avgLine = parsed.map((i) => i.avg);
 
     if (chartRef.current) {
       chartRef.current.destroy();
+      chartRef.current = null;
     }
 
     const ctx = canvasRef.current.getContext("2d");
@@ -36,43 +79,44 @@ const HrContent6 = ({ data }) => {
         labels,
         datasets: [
           {
-            type: "bar",
             label: "Илүү цаг",
             data: overtime,
             backgroundColor: "#6adfdf",
           },
           {
-            type: "bar",
             label: "Ажил таслалт",
             data: absent,
             backgroundColor: "#d85855",
           },
           {
-            type: "bar",
             label: "Чөлөө",
             data: free,
             backgroundColor: "#63df56",
           },
           {
-            type: "bar",
             label: "Хоцролт",
             data: late,
             backgroundColor: "#dee15a",
           },
-          // {
-          //   type: "line",
-          //   label: "Дундаж",
-          //   data: avgLine,
-          //   borderColor: "#000",
-          //   fill: false,
-          // },
         ],
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false, // 👈 ЭНД
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+        },
         scales: {
-          y: { beginAtZero: true },
+          x: {
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            beginAtZero: true,
+          },
         },
       },
     });
@@ -80,9 +124,10 @@ const HrContent6 = ({ data }) => {
     return () => {
       if (chartRef.current) {
         chartRef.current.destroy();
+        chartRef.current = null;
       }
     };
-  }, [data]);
+  }, [activeYear, groupedData]);
 
   if (!data || data.length === 0) return null;
 
@@ -91,6 +136,12 @@ const HrContent6 = ({ data }) => {
       <Row gutter={[24, 24]} justify="center">
         <Col xs={24} sm={24}>
           <Card className="card-padding" style={{ borderRadius: 12 }}>
+            <Tabs activeKey={activeYear} onChange={setActiveYear}>
+              {years.map((year) => (
+                <TabPane tab={year} key={year} />
+              ))}
+            </Tabs>
+
             <div style={{ height: 300 }}>
               <canvas ref={canvasRef} />
             </div>

@@ -444,4 +444,9 @@ transform: translateY(-2px) scale(1.01);
       min-height: 103px;
     }
   }
+
+  .ant-tabs-nav .ant-tabs-tab{
+    padding: 10px;
+    margin: 0px 5px;
+  }
   
