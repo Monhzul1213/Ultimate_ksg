@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Chart from 'chart.js';
+import { Chart, CategoryScale, LinearScale, BarElement, BarController, Title, Tooltip, Legend } from 'chart.js';
 
-// Chart.register(CategoryScale, LinearScale, BarElement, BarController, Title, Tooltip, Legend);
+Chart.register(CategoryScale, LinearScale, BarElement, BarController, Title, Tooltip, Legend);
 
 export default class AgeChart extends Component {
   constructor(props) {
@@ -15,22 +15,21 @@ export default class AgeChart extends Component {
     const drawPercentageLabels = {
       id: 'percentageLabels',
       afterDatasetsDraw(chart) {
-        const { ctx, scales } = chart;
-
-        if (!scales.y || !scales.x) return;
-
-        const y = scales.y;
-        const x = scales.x;
+        const {
+          ctx,
+          data,
+          scales: { y, x }
+        } = chart;
 
         ctx.save();
         ctx.fillStyle = '#666';
         ctx.font = '12px sans-serif';
         ctx.textAlign = 'left';
 
-        chart.data.labels.forEach((label, index) => {
-          const yPos = y.getPixelForValue(index);
+        data.labels.forEach((label, index) => {
+          const yPos = y.getPixelForValue(label);
           const percentage = groupPercentages[index];
-          ctx.fillText(`${percentage}%`, x.right + 5, yPos);
+          ctx.fillText(`${percentage}%`, x.right + 5, yPos + 0);
         });
 
         ctx.restore();
@@ -98,6 +97,7 @@ export default class AgeChart extends Component {
         },
         scales: {
           x: {
+            stacked: true,
             ticks: {
               callback: (value) => Math.abs(value),
             },

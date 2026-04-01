@@ -10,7 +10,7 @@ import cookie from "react-cookies";
 import request from "@/insurance/PostRequest";
 import { Layout, Menu, Icon, Avatar, Dropdown, Spin } from "antd";
 import "./LeftMenu.css";
-import logo from "@/image/Logo_104X104.png";
+import logo from "@/image/login_logo.png";
 import loadingImg from "@/image/loading.gif";
 import male from "@/image/male.png";
 import female from "@/image/female.png";
@@ -28,7 +28,7 @@ const loadingIcon = (
 class compon extends React.Component {
   constructor(props) {
     super(props);
-    const cookieUser = cookie.load("LoggedSysuser");
+    const cookieUser = cookie.load("LoggedSysuser");    
     this.state = {
       cookieUser,
       moduls: props.moduls,
@@ -68,7 +68,6 @@ class compon extends React.Component {
     });
   }
   render() {
-    const { t } = this.props;
     const userMenu = (
       <Menu>
         <Menu.Item key="0">
@@ -110,6 +109,8 @@ class compon extends React.Component {
       </Menu>
     );
 
+    const { ReportHeaderLogo } = this.state.moduls.Table4[0]|| {};
+        
     return (
       <Layout>
         <LoginPasswordChangeModal isNewPass={this.state.isNewPass} />
@@ -126,10 +127,9 @@ class compon extends React.Component {
           <div className={!this.state.collapsed ? "logo1" : "LogoTitle"}>
             <a href="#/HRDashboard">
               <img
-                src={this.state.collapsed ? logo1 : logo}
+                src={this.state.collapsed ? logo1 : ReportHeaderLogo ? `data:image/png;base64,${ReportHeaderLogo}` : logo}
                 alt="Logo"
-                style={{ cursor: "pointer", width: 155,
-                  height: 50 }}
+                style={this.state.collapsed ? {cursor: "pointer", width: 40, height: 45} : { cursor: "pointer", width: 155, height: 45 }}
               />
             </a>
           </div>

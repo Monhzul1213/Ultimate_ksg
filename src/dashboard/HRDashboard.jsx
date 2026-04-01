@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import "ant-design-pro/dist/ant-design-pro.css";
 import "antd/dist/antd.css";
-import { Icon, notification, Divider} from "antd";
+import { Icon, notification, Divider } from "antd";
 import cookie from "react-cookies";
 
 import request from "../insurance/PostRequest";
 import "./Dashboard.css";
 import HrContent1 from "./HrContent1";
-import HrContent3 from "./HRContent3";
 import HrContent2 from "./HRContent2";
+import HrContent3 from "./HRContent3";
+import HrContent4 from "./HRContent4";
+import HrContent5 from "./HRContent5";
+import HrContent6 from "./HRContent6";
+import HrContent7 from "./HRContent7";
+import HrContent8 from "./HRContent8";
 
 export default class HRDashboard extends Component {
   constructor(props) {
@@ -19,13 +24,14 @@ export default class HRDashboard extends Component {
       baseData: [],
       loading: false,
       LoggedSysuser,
-      queryID: "HRM_001"
+      queryID: "HRM_001",
+      lastUpdated: null
     };
   }
 
   componentDidMount() {
-    this.getData()
-  };
+    this.getData();
+  }
 
   getData = () => {
     this.setState({ loading: true });
@@ -34,9 +40,7 @@ export default class HRDashboard extends Component {
         token: this.state.LoggedSysuser.token,
         json: JSON.stringify({ QueryID: this.state.queryID }),
       })
-      .then((res) => {
-        console.log(res);
-        
+      .then((res) => {        
         const data = res.data;
         if (data.retType !== 0) {
           this.setState({ loading: false });
@@ -46,9 +50,12 @@ export default class HRDashboard extends Component {
           });
           return;
         }
-        console.log(res.data.retData);
-        
-        this.setState({ baseData: res.data.retData, loading: false });
+
+        this.setState({
+          baseData: res.data.retData,
+          loading: false,
+          lastUpdated: new Date()
+        });
       })
       .catch((err) => {
         this.setState({ loading: false });
@@ -56,28 +63,105 @@ export default class HRDashboard extends Component {
       });
   };
 
-  onCollapse = collapsed => {
-    this.setState({ collapsed });
-  };
-
   handleClick = () => {
     this.getData();
   };
 
-  
   render() {
+    const { lastUpdated, baseData, loading } = this.state;
+
+    const formattedLastUpdated = lastUpdated
+      ? `${lastUpdated.getFullYear()}-${String(lastUpdated.getMonth() + 1).padStart(2, "0")}-${String(lastUpdated.getDate()).padStart(2, "0")} ${String(lastUpdated.getHours()).padStart(2, "0")}:${String(lastUpdated.getMinutes()).padStart(2, "0")}:${String(lastUpdated.getSeconds()).padStart(2, "0")}`
+      : "";
 
     return (
-      <div  style={{ margin: "20px" }}>
-        <div style={{display: 'flex', flexFlow: 'row', alignItems: 'center', margin: "0 20px" }}>
-          <h3>Dashboard</h3> 
-          {/* <p style={{ height: 25, marginLeft: 10}}>|</p> */}
-          <Divider type="vertical"  style={{borderLeft: '2px solid gray', height: 25}}/>
-          <Icon style={{ fontSize: '20px', marginLeft: 2}} spin={this.state.loading} type='sync' theme="outlined" onClick={this.handleClick}/>
+      <div className="hr-dashboard-page">
+        <div className="dashboard-topbar">
+          <h3 className="dashboard-title">Dashboard</h3>
+          <Divider type="vertical" className="dashboard-divider" />
+          <Icon
+            className="dashboard-refresh"
+            spin={loading}
+            type="sync"
+            theme="outlined"
+            onClick={this.handleClick}
+          />
+          {formattedLastUpdated ? (
+            <span className="dashboard-updated-text">
+              Сүүлд шинэчилсэн: {formattedLastUpdated}
+            </span>
+          ) : null}
         </div>
-        <HrContent1 data={this.state.baseData.Table} data7={this.state.baseData.Table7} data8={this.state.baseData.Table8}/>
-        <HrContent2 ageData={this.state.baseData.Table1} data1={this.state.baseData.Table2} data2={this.state.baseData.Table3}/>
-        <HrContent3 data={this.state.baseData.Table4} data1={this.state.baseData.Table5} data2={this.state.baseData.Table6} data3={this.state.baseData.Table9}/>
+
+        <div className="dashboard-section">
+          <div className="dashboard-section-header">
+            <div>
+              <div className="dashboard-section-title-row">
+                <Icon type="team" className="dashboard-section-icon" />
+                <span className="dashboard-section-title">Ажилтны мэдээлэл</span>
+              </div>              
+              <div className="dashboard-section-desc">
+                Ерөнхий үзүүлэлт, ажилласан хугацаа, насны бүтэц, хэлтсийн мэдээлэл
+              </div>
+            </div>
+          </div>
+
+          <HrContent1 data={baseData.Table} data1={baseData.Table13} data2={baseData.Table14} />
+          <HrContent2
+            data={baseData.Table}
+            data1={baseData.Table1}
+            data2={baseData.Table2}
+            reportData={baseData.Table19}
+          />
+          <HrContent3
+            ageData={baseData.Table3}
+            data={baseData.Table4}
+            data1={baseData.Table20}
+          />
+        </div>
+
+        <div className="dashboard-section">
+          <div className="dashboard-section-header">
+            <div>
+              <div className="dashboard-section-title-row">
+                <Icon type="calendar" className="dashboard-section-icon" />
+                <span className="dashboard-section-title">Ирцийн мэдээлэл</span>
+              </div>
+              <div className="dashboard-section-desc">
+                Өнөөдрийн ирц, сар жилийн үзүүлэлт, хөдөлгөөний статистик
+              </div>
+            </div>
+          </div>
+
+          <HrContent4
+            data={baseData.Table5}
+            data1={baseData.Table6}
+            data2={baseData.Table7}
+            data3={baseData.Table8}
+            reportData1={baseData.Table16}
+            reportData2={baseData.Table17}
+            reportData3={baseData.Table18}
+          />
+          <HrContent5 data={baseData.Table9} />
+          <HrContent6 data={baseData.Table10} />
+        </div>
+
+        <div className="dashboard-section">
+          <div className="dashboard-section-header">
+            <div>
+              <div className="dashboard-section-title-row">
+                <Icon type="wallet" className="dashboard-section-icon" />
+                <span className="dashboard-section-title">Цалингийн мэдээлэл</span>
+              </div>
+              <div className="dashboard-section-desc">
+                Цалингийн тайлан, нэмэгдэл, суутгалын мэдээлэл
+              </div>
+            </div>
+          </div>
+
+          <HrContent7 data={baseData.Table11} />
+          <HrContent8 data={baseData.Table12} />
+        </div>
       </div>
     );
   }

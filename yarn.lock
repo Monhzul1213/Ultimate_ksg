@@ -4156,28 +4156,10 @@
   "resolved" "https://registry.npmjs.org/chardet/-/chardet-0.7.0.tgz"
   "version" "0.7.0"
 
-"chart.js@^1.1.1", "chart.js@^2.3", "chart.js@^2.7.6":
-  "integrity" "sha512-B07aAzxcrikjAPyV+01j7BmOpxtQETxTSlQ26BEYJ+3iUkbNKaOJ/nDbT6JjyqYxseM0ON12COHYdU2cTIjC7A=="
-  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-2.9.4.tgz"
-  "version" "2.9.4"
-  dependencies:
-    "chartjs-color" "^2.1.0"
-    "moment" "^2.10.2"
-
-"chartjs-color-string@^0.6.0":
-  "integrity" "sha512-TIB5OKn1hPJvO7JcteW4WY/63v6KwEdt6udfnDE9iCAZgy+V4SrbSxoIbTw/xkUIapjEI4ExGtD0+6D3KyFd7A=="
-  "resolved" "https://registry.npmjs.org/chartjs-color-string/-/chartjs-color-string-0.6.0.tgz"
-  "version" "0.6.0"
-  dependencies:
-    "color-name" "^1.0.0"
-
-"chartjs-color@^2.1.0":
-  "integrity" "sha512-hEvVheqczsoHD+fZ+tfPUE+1+RbV6b+eksp2LwAhwRTVXEjCSEavvk+Hg3H6SZfGlPh/UfmWKGIvZbtobOEm3g=="
-  "resolved" "https://registry.npmjs.org/chartjs-color/-/chartjs-color-2.3.0.tgz"
-  "version" "2.3.0"
-  dependencies:
-    "chartjs-color-string" "^0.6.0"
-    "color-convert" "^0.5.3"
+"chart.js@^1.1.1", "chart.js@^2.3", "chart.js@^3.7.1":
+  "integrity" "sha512-8knRegQLFnPQAheZV8MjxIXc5gQEfDFD897BJgv/klO/vtIyFFmgMXrNfgrXpbTr/XbTturxRgxIXx/Y+ASJBA=="
+  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-3.7.1.tgz"
+  "version" "3.7.1"
 
 "chokidar@^2.0.4", "chokidar@^2.1.8":
   "integrity" "sha512-ZmZUazfOzf0Nve7duiCKD23PFSCs4JPoYyccjUFF3aQkQadqBhfzhjkwBH2mNOG9cTBwhamM37EIsIkZw3nRgg=="
@@ -4383,11 +4365,6 @@
   dependencies:
     "map-visit" "^1.0.0"
     "object-visit" "^1.0.0"
-
-"color-convert@^0.5.3":
-  "integrity" "sha1-vbbGnOZg+t/+CwAHzER+G59ygr0= sha512-RwBeO/B/vZR3dfKL1ye/vx8MHZ40ugzpyfeVG5GsiuGnrlMWe2o8wxBbLCpw9CsxV+wHuzYlCiWnybrIA0ling=="
-  "resolved" "https://registry.npmjs.org/color-convert/-/color-convert-0.5.3.tgz"
-  "version" "0.5.3"
 
 "color-convert@^1.9.0", "color-convert@^1.9.3":
   "integrity" "sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg=="
@@ -9380,7 +9357,7 @@
   dependencies:
     "minimist" "^1.2.6"
 
-"moment@^2.10.2", "moment@^2.24.0", "moment@2.x":
+"moment@^2.24.0", "moment@2.x":
   "integrity" "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w=="
   "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.4.tgz"
   "version" "2.29.4"

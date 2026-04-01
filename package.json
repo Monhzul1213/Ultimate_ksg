@@ -20,7 +20,7 @@
     "bizcharts": "^4.1.22",
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
-    "chart.js": "^2.7.6",
+    "chart.js": "^3.7.1",
     "crypto-js": "^4.2.0",
     "css-loader": "3.2.0",
     "devexpress-reporting": "^19.2.6",

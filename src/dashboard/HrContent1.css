@@ -5,6 +5,105 @@
   min-height: 103px;
 }
 
+.hr-overview-wrapper {
+  margin: 10px 10px 0 10px;
+}
+
+.hr-overview-card {
+  border-radius: 16px;
+  border: none;
+  min-height: 140px;
+  background: #f8f9fb;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
+}
+
+.hr-overview-card .ant-card-body {
+  height: 100%;
+  padding: 15px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hr-overview-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #3f4a5a;
+  text-align: center;
+  line-height: 1.45;
+  min-height: 30px;
+  margin-bottom: 14px;
+}
+
+.hr-overview-value {
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1;
+  color: #4a90ff;
+  margin-bottom: 12px;
+}
+
+.hr-overview-subtext {
+  font-size: 13px;
+  color: #7a8596;
+  text-align: center;
+  line-height: 1.5;
+  min-height: 20px;
+}
+.hr-overview-action {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #4a90ff;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.hr-overview-action:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 991px) {
+  .hr-overview-card {
+    min-height: 155px;
+  }
+
+  .hr-overview-card .ant-card-body {
+    padding: 18px 16px;
+  }
+
+  .hr-overview-title {
+    font-size: 15px;
+    min-height: 42px;
+  }
+
+  .hr-overview-value {
+    font-size: 28px;
+  }
+
+  .hr-overview-subtext {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 575px) {
+  .hr-overview-card {
+    min-height: auto;
+  }
+
+  .hr-overview-title {
+    font-size: 14px;
+    min-height: auto;
+  }
+
+  .hr-overview-value {
+    font-size: 30px;
+  }
+}
 @media only screen and (max-width: 1679px) {
   .card-padding .ant-card-body {
     min-height: 126px;
@@ -22,6 +121,11 @@
   }
 }
 
+@media only screen and (max-width: 1025px) {
+  .card-padding .ant-card-body {
+    min-height: 126px;
+  }
+}
 @media only screen and (max-width: 1025px) {
   .card-padding .ant-card-body {
     min-height: 126px;
@@ -53,17 +157,4 @@
   .card-padding .ant-card-body {
     min-height: 126px;
   }
-}
-.previous-month{
-  height: 15px;
-}
-.click_here{
-  position: absolute;
-  bottom: 20px;
-  right: 10px;
-  font-size: 20px;
-}
-.click_here:hover{
-  color: #1890ff;
-  cursor: pointer;
 }
