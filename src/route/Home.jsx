@@ -1371,7 +1371,7 @@ class compon extends React.Component {
                       >
                         {bufferData
                           .filter((item) =>
-                            ["09", "10", "11", "12", "15", "16"].includes(
+                            ["09", "10", "11", "12", "15", "16", "17"].includes(
                               String(item.ReasonID).padStart(2, "0"),
                             ),
                           )

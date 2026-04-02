@@ -109,7 +109,7 @@ class compon extends React.Component {
       </Menu>
     );
 
-    const { ReportHeaderLogo } = this.state.moduls.Table4[0]|| {};
+    const { ReportHeaderLogo, LogoFile } = this.state.moduls.Table4[0]|| {};
         
     return (
       <Layout>
@@ -124,12 +124,12 @@ class compon extends React.Component {
           width={280}
           className="MenuLayout"
         >
-          <div className={!this.state.collapsed ? "logo1" : "LogoTitle"}>
+          <div className={!this.state.collapsed ? "logo1" : "LogoTitle"} style={this.state.collapsed && !LogoFile ? {backgroundColor: 'transparent'} : {}}>
             <a href="#/HRDashboard">
               <img
-                src={this.state.collapsed ? logo1 : ReportHeaderLogo ? `data:image/png;base64,${ReportHeaderLogo}` : logo}
+                src={this.state.collapsed ? LogoFile ? `data:image/png;base64,${LogoFile}` : logo1 : ReportHeaderLogo ? `data:image/png;base64,${ReportHeaderLogo}` : logo}
                 alt="Logo"
-                style={this.state.collapsed ? {cursor: "pointer", width: 40, height: 45} : { cursor: "pointer" }}
+                style={this.state.collapsed ? {cursor: "pointer", height: 40} : { cursor: "pointer" }}
               />
             </a>
           </div>
