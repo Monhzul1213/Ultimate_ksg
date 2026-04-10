@@ -1,23 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import {
-  G2,
-  Chart,
-  Geom,
-  Axis,
-  Tooltip,
-  Coord,
-  Label,
-  Legend,
-  View,
-  Guide,
-  Shape,
-  Facet,
-  Util,
-} from "bizcharts";
-import {
-  Layout,
-  Menu,
   Icon,
   Table,
   notification,
@@ -32,23 +14,17 @@ import {
   Tabs,
   DatePicker,
   Input,
-  InputNumber,
-  Checkbox,
   Switch,
   Form,
   Popconfirm,
   Tooltip as ATooltip,
   Typography,
   Select,
-  Tag,
-  message,
 } from "antd";
 import moment from "moment";
-import axios from "axios";
 import "./Home.css";
-import { StickyContainer, Sticky } from "react-sticky";
+import { Sticky } from "react-sticky";
 import cookie from "react-cookies";
-import MainRoute from "./mainRoute.jsx";
 import request from "@/insurance/PostRequest.js";
 import Overt from "../hrm/Overtime";
 
@@ -57,13 +33,10 @@ const { Text } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
 const { TabPane } = Tabs;
-const { Meta } = Card;
 //const { Header, Content, Footer, Sider } = Layout;
-const SubMenu = Menu.SubMenu;
 const { MonthPicker } = DatePicker;
 const monthFormat = "YYYY.MM";
 const dateFormat = "YYYY.MM.DD";
-const datetimeFormat = "YYYY.MM.DD H:MM";
 
 var date = new Date(),
   today =
@@ -80,29 +53,29 @@ var month = new Date().getMonth() + 1;
 var year = new Date().getFullYear();
 var monthYear = year + "." + month;
 
-const operations = (
-  <div style={{ paddingTop: 8, paddingRight: 8 }}>
-    <MonthPicker
-      placeholder="Select Month"
-      defaultValue={moment(year + "." + month, monthFormat)}
-      format={monthFormat}
-      onChange={(a) => {
-        monthYear = moment(a).format(monthFormat);
-      }}
-    />
-  </div>
-);
+// const operations = (
+//   <div style={{ paddingTop: 8, paddingRight: 8 }}>
+//     <MonthPicker
+//       placeholder="Select Month"
+//       defaultValue={moment(year + "." + month, monthFormat)}
+//       format={monthFormat}
+//       onChange={(a) => {
+//         monthYear = moment(a).format(monthFormat);
+//       }}
+//     />
+//   </div>
+// );
 
-const renderTabBar = (props, DefaultTabBar) => (
-  <Sticky bottomOffset={80}>
-    {({ style }) => (
-      <DefaultTabBar
-        {...props}
-        style={{ ...style, margin: 0, zIndex: 1, background: "#fff" }}
-      />
-    )}
-  </Sticky>
-);
+// const renderTabBar = (props, DefaultTabBar) => (
+//   <Sticky bottomOffset={80}>
+//     {({ style }) => (
+//       <DefaultTabBar
+//         {...props}
+//         style={{ ...style, margin: 0, zIndex: 1, background: "#fff" }}
+//       />
+//     )}
+//   </Sticky>
+// );
 
 const formTailLayout = {
   labelCol: { span: 2 },
@@ -397,7 +370,7 @@ class compon extends React.Component {
     emptyValue: "",
     isCheckInStatus: true,
     isCheckOutStatus: true,
-    activeTab: 1,
+    activeTab: "1",
     isSendEmail: false,
   };
 
@@ -551,6 +524,25 @@ class compon extends React.Component {
     },
   };
 
+  handleTabChange = (key) => {
+    const { form } = this.props;
+
+    this.setState({
+      activeTab: key,
+      reason: "",
+      reasonID: "",
+      CheckIn: this.state.OnDuty || null,
+      CheckOut: this.state.OffDuty || null,
+      isCheckInStatus: true,
+      isCheckOutStatus: true,
+      iswithwage: false,
+      isfullday: false,
+      overtime: 0,
+      IsExcused: key === "3" ? "W" : "F",
+    });
+
+    form.resetFields(["reasonID", "reasonName", "reasonID2", "reason2"]);
+  };
   render() {
     // console.log(this.state);
     const { bufferData, result, bufferData1, bufferData2, bufferData3 } =
@@ -574,7 +566,7 @@ class compon extends React.Component {
         </ATooltip>
       </div>
     );
-    console.log(this.table.data);
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <div>
@@ -918,13 +910,9 @@ class compon extends React.Component {
             destroyOnClose={true}
           >
             <Tabs
-              defaultActiveKey="1"
-              onChange={(a) => {
-                this.setState({
-                  activeTab: a,
-                  reason: "",
-                });
-              }}
+              destroyInactiveTabPane
+              defaultActiveKey={this.state.activeTab}
+              onChange={this.handleTabChange}
             >
               <TabPane tab="Хуруу нөхөх" key="1">
                 <div className="dateContainer">
@@ -1393,7 +1381,7 @@ class compon extends React.Component {
                     {getFieldDecorator("reason2", {
                       rules: [
                         {
-                          required: (this.state.activeTab = 3 ? true : false),
+                          required: (this.state.activeTab === "3" ? true : false),
                           message: "Шалтгаан оруулна уу!",
                         },
                       ],
