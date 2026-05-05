@@ -544,11 +544,11 @@ class compon extends React.Component {
     form.resetFields(["reasonID", "reasonName", "reasonID2", "reason2"]);
   };
   render() {
-    // console.log(this.state);
     const { bufferData, result, bufferData1, bufferData2, bufferData3 } =
       this.state;
     let chartIns = null;
     const { getFieldDecorator } = this.props.form;
+
     const chkemail = (
       <div>
         <ATooltip title="Яаралтай батлуулах хүсэлт бол үүнийг дарж имэйл илгээнэ!">

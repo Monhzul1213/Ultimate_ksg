@@ -238,14 +238,14 @@ export default class LeaveRequest extends Component {
                   this.state.filterResult.Table3[2].ValueStr1}
               </Tag>
             );
-          case 4:
-            return (
-              <Tag color="#f50">
-                {this.state.filterResult &&
-                  this.state.filterResult.Table3 &&
-                  this.state.filterResult.Table3[3].ValueStr1}
-              </Tag>
-            );
+          // case 4:
+          //   return (
+          //     <Tag color="#f50">
+          //       {this.state.filterResult &&
+          //         this.state.filterResult.Table3 &&
+          //         this.state.filterResult.Table3[3].ValueStr1}
+          //     </Tag>
+          //   );
         }
       }
     };
