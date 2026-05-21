@@ -135,7 +135,12 @@ class compon extends React.Component {
       <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+      record[dataIndex]
+        ? record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        : false,
     onFilterDropdownVisibleChange: (visible) => {
       if (visible) {
         setTimeout(() => this.searchInput.select());
@@ -146,6 +151,7 @@ class compon extends React.Component {
         highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
         searchWords={[this.state.searchText]}
         autoEscape
+        textToHighlight={text ? text.toString() : ""}
       />
     ),
   });
@@ -264,32 +270,60 @@ class compon extends React.Component {
     },
   };
 
-  table = {
-    columns: [
+  handleChange = (pagination, filters, sorter) => {
+    this.setState({
+      filteredInfo: filters,
+      sortedInfo: sorter,
+    });
+  };
+
+  getColumns = () => {
+    const data = this.tableData.data || [];
+
+    const uniqueEmpCode = [...new Set(data.map((item) => item.EmpCode).filter(Boolean))];
+    const empCodeFilters = uniqueEmpCode.map((code) => ({ text: code, value: code }));
+
+    const uniqueEmpFullname = [...new Set(data.map((item) => item.EmpFullname).filter(Boolean))];
+    const empFullnameFilters = uniqueEmpFullname.map((name) => ({ text: name, value: name }));
+
+    const uniqueDescr = [...new Set(data.map((item) => item.Descr).filter(Boolean))];
+    const descrFilters = uniqueDescr.map((descr) => ({ text: descr, value: descr }));
+
+    const uniquePosName = [...new Set(data.map((item) => item.PosName).filter(Boolean))];
+    const posFilters = uniquePosName.map((pos) => ({ text: pos, value: pos }));
+
+    return [
       {
         key: "EmpCode",
         dataIndex: "EmpCode",
         title: "Ажилтны код",
         align: "center",
+        filters: empCodeFilters,
+        onFilter: (value, record) => record.EmpCode === value,
       },
       {
         key: "EmpFullname",
         dataIndex: "EmpFullname",
         title: "Ажилтны нэр",
         align: "center",
+        filters: empFullnameFilters,
+        onFilter: (value, record) => record.EmpFullname === value,
       },
       {
         key: "Descr",
         dataIndex: "Descr",
         title: "Хэлтэс",
         align: "center",
+        filters: descrFilters,
+        onFilter: (value, record) => record.Descr === value,
       },
-      ,
       {
         key: "PosName",
         dataIndex: "PosName",
         title: "Албан тушаал",
         align: "center",
+        filters: posFilters,
+        onFilter: (value, record) => record.PosName === value,
       },
       {
         key: "SheetDate",
@@ -338,7 +372,6 @@ class compon extends React.Component {
             </Tag>
           );
         },
-        //...this.getColumnSearchProps('SheetDate'),
       },
       {
         key: "ReasonDescr",
@@ -361,7 +394,6 @@ class compon extends React.Component {
             </Tag>
           );
         },
-        //...this.getColumnSearchProps('CheckInTime'),
       },
       {
         key: "CheckOutTime",
@@ -378,7 +410,6 @@ class compon extends React.Component {
             </Tag>
           );
         },
-        //...this.getColumnSearchProps('CheckOutTime'),
       },
       {
         key: "RegDate",
@@ -403,7 +434,6 @@ class compon extends React.Component {
                 type="primary"
                 icon="check"
                 onClick={() => {
-                  //  console.log( this.state.activeRow && this.state.activeRow.IsOverTime);
                   if (i.IsCalculate == "Y")
                     return message.warning(
                       "Цалин бодолт хийгдэж байгаа тул цагийн мэдээг өөрчлөх боломжгүй.",
@@ -538,7 +568,7 @@ class compon extends React.Component {
           );
         },
       },
-    ],
+    ];
   };
   tableData = { data: [] };
 
@@ -558,7 +588,7 @@ class compon extends React.Component {
           )}`}</Text>
         </h4>
         <Table
-          columns={this.table.columns}
+          columns={this.getColumns()}
           dataSource={this.tableData.data}
           onChange={this.handleChange}
           bordered={true}

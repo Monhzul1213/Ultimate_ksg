@@ -166,8 +166,6 @@ export default class LeaveRequest extends Component {
     ];
 
     const customRender = (text, record, fieldName) => {
-      console.log(record, this.state.filterResult.Table3);
-      
       if (fieldName == "EmpName") {
         if (record.Status === 2)
           return (
