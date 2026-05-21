@@ -166,6 +166,8 @@ export default class LeaveRequest extends Component {
     ];
 
     const customRender = (text, record, fieldName) => {
+      console.log(record, this.state.filterResult.Table3);
+      
       if (fieldName == "EmpName") {
         if (record.Status === 2)
           return (
@@ -222,7 +224,15 @@ export default class LeaveRequest extends Component {
                   this.state.filterResult.Table3[0].ValueStr1}
               </Tag>
             );
-          case 1:
+          // case 1:
+          //   return (
+          //     <Tag color="#87d068">
+          //       {this.state.filterResult &&
+          //         this.state.filterResult.Table3 &&
+          //         this.state.filterResult.Table3[2].ValueStr1}
+          //     </Tag>
+          //   );
+          case 2:
             return (
               <Tag color="#87d068">
                 {this.state.filterResult &&
@@ -230,7 +240,7 @@ export default class LeaveRequest extends Component {
                   this.state.filterResult.Table3[1].ValueStr1}
               </Tag>
             );
-          case 2:
+          case 4:
             return (
               <Tag color="#108ee9">
                 {this.state.filterResult &&
@@ -238,14 +248,6 @@ export default class LeaveRequest extends Component {
                   this.state.filterResult.Table3[2].ValueStr1}
               </Tag>
             );
-          // case 4:
-          //   return (
-          //     <Tag color="#f50">
-          //       {this.state.filterResult &&
-          //         this.state.filterResult.Table3 &&
-          //         this.state.filterResult.Table3[3].ValueStr1}
-          //     </Tag>
-          //   );
         }
       }
     };
