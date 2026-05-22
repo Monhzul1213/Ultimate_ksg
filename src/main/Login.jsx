@@ -96,7 +96,7 @@ class NormalLoginForm extends React.Component {
       .post("Login", {
         token: "",
         Name: "Price",
-        Password: 'MqENv/FtHR)65j"[Y8fs%k(~g',
+        Password: 'Price123',
         device: navigator.userAgent.replace(/;/g, ""),
       })
       .then((loginRes) => {
