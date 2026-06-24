@@ -73,13 +73,13 @@ export default class AgeChart extends Component {
         labels: transformedData.map(item => item.AgeGroup),
         datasets: [
           {
-            label: `Woman (${-(totalFemale)})`,
+            label: `Эмэгтэй (${-(totalFemale)})`,
             data: transformedData.map(item => item.Female),
             backgroundColor: '#FF69B4',
             barThickness: 15,
           },
           {
-            label: `Man (${totalMale})`,
+            label: `Эрэгтэй (${totalMale})`,
             data: transformedData.map(item => item.Male),
             backgroundColor: '#0088FE',
             barThickness: 15 ,

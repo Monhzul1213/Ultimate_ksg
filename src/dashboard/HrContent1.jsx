@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Card } from "antd";
+import { Row, Col, Card, Icon, Tooltip } from "antd";
 import { withRouter } from "react-router-dom";
 
 import "./HrContent1.css";
@@ -21,15 +21,13 @@ class HrContent1 extends React.Component {
 
   onClickNewEmp = () => {
     localStorage.setItem("passedDataType", "new");
-    localStorage.setItem("passedData1", JSON.stringify(this.props.data1));
+    localStorage.setItem("passedData", JSON.stringify(this.props.data1 || []));
     this.props.history.push("/EmployeeInquiry");
   };
 
   onClickSackEmp = () => {
-    console.log(this.props);
-    
     localStorage.setItem("passedDataType", "sack");
-    localStorage.setItem("passedData2", JSON.stringify(this.props.data2));
+    localStorage.setItem("passedData", JSON.stringify(this.props.data2 || []));
     this.props.history.push("/EmployeeInquiry");
   };
 
@@ -55,24 +53,27 @@ class HrContent1 extends React.Component {
 
     const detailData = [
       {
-        label: "Total Active Employees",
+        label: "Нийт ажилтны тоо",
         value: TotalEmp,
-        subText: `Total registered: ${TotalEmpAll}`,
+        subText: `Нийт бүртгэлтэй: ${TotalEmpAll}`,
         clickable: false,
+        tooltip: "Гэрээний бүртгэл  хийгдсэн, одоо идэвхтэй төлөвтэй ажилтны тоог энд харуулах тул ажилтны мэдээлэл дээрх тооноос зөрж болно. Хэрэв зөрүүтэй байвал гэрээний бүртгэлийг бүрэн хийх ёстойг санаарай! Харин \"Нийт бүртгэлтэй\" тоо нь урьд өмнө бүхий л  хугацаанд гэрээний бүртгэл үүсэж орсон/гарсан бүх ажилтны тоо болно.",
       },
       {
-        label: "New Employees",
+        label: "Шинэ ажилтны тоо",
         value: NewEmp,
-        subText: `Previous month: ${NewEmpAgo}`,
+        subText: `Өмнөх сард: ${NewEmpAgo}`,
         onClick: this.onClickNewEmp,
         clickable: true,
+        tooltip: "Энэ сард шинээр нэмэгдсэн ажилтны тоо бөгөөд гэрээний бүртгэл дээрх эхлэх огноогоор энэ сард эсвэл өмнөх сард нэмэгдсэн эсэхийг шалгана. ",
       },
       {
-        label: "Resigned Employees",
+        label: "Гарсан ажилтны тоо",
         value: SackEmp,
-        subText: `Previous month: ${SackEmpAgo}`,
+        subText: `Өмнөх сард: ${SackEmpAgo}`,
         onClick: this.onClickSackEmp,
         clickable: true,
+        tooltip: "Энэ сард ажлаас гарсан ажилтны тоо бөгөөд халагдах (хөдөлмөрийн гэрээ дуусгавар болгох) тушаалын бүртгэл дээрх огноогоор энэ сард эсвэл өмнөх сард гарсан эсэхийг шалгана. ",
       },
     ];
 
@@ -82,8 +83,19 @@ class HrContent1 extends React.Component {
           {detailData.map((item, index) => (
             <Col key={index} xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
               <Card className={`hr-overview-card ${item.clickable && item.value > 0 ? "is-clickable" : ""}`} onClick={item.clickable && item.value > 0 ? item.onClick : null}>
-                <div className="hr-overview-title">{item.label}</div>
-
+                <div className="hr-overview-title">
+                  {item.label}
+                  {item.tooltip && (
+                    <Tooltip title={item.tooltip} placement="right" overlayClassName="hr-tooltip">
+                      <Icon
+                        type="info-circle-o"
+                        className="info-icon"
+                        style={{ marginLeft: 6, cursor: "pointer", color: "#8c96a5" }}
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                    </Tooltip>
+                  )}
+                </div>
                 <div className="hr-overview-value">{item.value}</div>
 
                 <div className="hr-overview-subtext">{item.subText}</div>

@@ -1,7 +1,8 @@
 import React from "react";
-import { Row, Col, Card } from "antd";
+import { Row, Col, Card, Tooltip as AntdTooltip, Icon } from "antd";
 import { Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import "./HrContent2.css";
+import "./HrContent1.css";
 import AgeChart from "./AgeChart";
 
 export default class HrContent3 extends React.Component {
@@ -37,7 +38,14 @@ export default class HrContent3 extends React.Component {
         <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8}>
           <Card className="card-padding" style={{ borderRadius: 12, height: 300 }}>
             <p style={{ fontWeight: "bold", textAlign: "center" }}>
-              Age segmentation (avg = {averageAge})
+              Насны бүтэц (дундаж = {averageAge})
+              <AntdTooltip title="Ажилтны тоо зөрүүтэй бол гэрээний бүртгэл хийгдсэн эсэхийг шалгаарай!" overlayClassName="hr-tooltip" placement="right">
+                <Icon
+                  type="info-circle-o"
+                  className="info-icon"
+                  style={{ marginLeft: 6, cursor: "pointer", color: "#8c96a5" }}
+                />
+              </AntdTooltip>
             </p>
             <AgeChart data={ageData}/>
           </Card>
@@ -46,7 +54,14 @@ export default class HrContent3 extends React.Component {
           <Col xs={24} sm={12} md={8} lg={8} xl={8} xxl={8} key={cpnyID}>
             <Card className="card-padding" style={{ borderRadius: 12, height: 300 }}>
               <p style={{ textAlign: "center", fontWeight: "bold" }}>
-                By Department
+                Ажилтны тоо / хэлтсээр
+                <AntdTooltip title="Ажилтны тоо зөрүүтэй бол гэрээний бүртгэл хийгдсэн эсэхийг шалгаарай!" overlayClassName="hr-tooltip" placement="right">
+                  <Icon
+                    type="info-circle-o"
+                    className="info-icon"
+                    style={{ marginLeft: 6, cursor: "pointer", color: "#8c96a5" }}
+                  />
+                </AntdTooltip>
               </p>
 
               <ResponsiveContainer width="100%" height={250}>
@@ -78,7 +93,16 @@ export default class HrContent3 extends React.Component {
         ))}
         <Col xs={24} sm={12} md={8}>
           <Card className="card-padding" style={{borderRadius: 12}}>
-            <p style={{ textAlign: "center", fontWeight: "bold", fontSize: 16, marginBottom: 4 }}>By Worked Years</p>
+            <p style={{ textAlign: "center", fontWeight: "bold", marginBottom: 4 }}>
+              Ажилтны тоо / ажилласан жилээр
+              <AntdTooltip title="Ажилтны тоо зөрүүтэй бол гэрээний бүртгэл хийгдсэн эсэхийг шалгаарай!" overlayClassName="hr-tooltip" placement="right">
+                <Icon
+                  type="info-circle-o"
+                  className="info-icon"
+                  style={{ marginLeft: 6, cursor: "pointer", color: "#8c96a5" }}
+                />
+              </AntdTooltip>
+            </p>
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie data={data1} dataKey="EmpCount" nameKey="YearInterval" innerRadius={40} outerRadius={95} fill="#8884d8" label={({ percent }) => `${(percent * 100).toFixed(0)}%`}>

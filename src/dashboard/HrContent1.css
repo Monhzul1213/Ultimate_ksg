@@ -11,7 +11,7 @@
 
 .hr-overview-card {
   border-radius: 16px;
-  border: none;
+  /* border: none; */
   min-height: 140px;
   background: #f8f9fb;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
@@ -33,8 +33,16 @@
   color: #3f4a5a;
   text-align: center;
   line-height: 1.45;
-  min-height: 30px;
+  /* min-height: 30px; */
   margin-bottom: 14px;
+}
+
+.info-icon {
+  transition: color 0.2s ease;
+}
+
+.info-icon:hover {
+  color: #1890ff !important;
 }
 
 .hr-overview-value {
@@ -78,7 +86,7 @@
 
   .hr-overview-title {
     font-size: 15px;
-    min-height: 42px;
+    /* min-height: 42px; */
   }
 
   .hr-overview-value {
@@ -97,7 +105,7 @@
 
   .hr-overview-title {
     font-size: 14px;
-    min-height: auto;
+    /* min-height: auto; */
   }
 
   .hr-overview-value {
@@ -157,4 +165,82 @@
   .card-padding .ant-card-body {
     min-height: 126px;
   }
+}
+
+/* Popover Custom Layout & Spacing */
+.hr-popover {
+  max-width: 320px !important;
+}
+
+.hr-popover .ant-popover-title {
+  color: #3f4a5a !important;
+  font-size: 13px !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  padding: 10px 14px !important;
+}
+
+.hr-popover .ant-popover-inner-content {
+  padding: 12px 14px !important;
+}
+
+.hr-popover-content {
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: #4f5a6a;
+}
+
+.hr-popover-desc {
+  margin: 0 0 10px 0 !important;
+}
+
+.hr-popover-warning {
+  background: #fffbe6 !important;
+  border: 1px solid #ffe58f !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+  margin: 10px 0 !important;
+  color: #d46b08 !important;
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+}
+
+.hr-popover-footer {
+  margin: 10px 0 0 0 !important;
+  color: #7a8596 !important;
+  font-size: 11px !important;
+  border-top: 1px dashed #e8e8e8 !important;
+  padding-top: 8px !important;
+}
+
+/* Tooltip custom styling: White background, dark-grey text, smaller font size */
+.hr-tooltip .ant-tooltip-inner {
+  background-color: #ffffff !important;
+  color: #3f4a5a !important;
+  font-size: 12px !important;
+  font-style: Italic !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e8e8e8 !important;
+  border-radius: 6px !important;
+  padding: 6px 10px !important;
+  line-height: 1.4 !important;
+}
+
+.hr-tooltip.ant-tooltip-placement-bottom .ant-tooltip-arrow,
+.hr-tooltip.ant-tooltip-placement-bottomLeft .ant-tooltip-arrow,
+.hr-tooltip.ant-tooltip-placement-bottomRight .ant-tooltip-arrow {
+  border-bottom-color: #ffffff !important;
+}
+
+.hr-tooltip.ant-tooltip-placement-top .ant-tooltip-arrow,
+.hr-tooltip.ant-tooltip-placement-topLeft .ant-tooltip-arrow,
+.hr-tooltip.ant-tooltip-placement-topRight .ant-tooltip-arrow {
+  border-top-color: #ffffff !important;
+}
+
+.hr-tooltip.ant-tooltip-placement-left .ant-tooltip-arrow {
+  border-left-color: #ffffff !important;
+}
+
+.hr-tooltip.ant-tooltip-placement-right .ant-tooltip-arrow {
+  border-right-color: #ffffff !important;
 }

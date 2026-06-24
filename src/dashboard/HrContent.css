@@ -109,7 +109,7 @@
 
 .hr-top-card {
   border-radius: 18px;
-  border: none;
+  /* border: none; */
   min-height: 140px;
   background: #f9fafb;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
@@ -130,7 +130,7 @@
   color: #364152;
   text-align: center; 
   line-height: 1.35;
-  min-height: 39px; /* title wrap хийхэд доош нь шахахгүй */
+  min-height: 30px; /* title wrap хийхэд доош нь шахахгүй */
   /* margin-bottom: 5px; */
 }
 
@@ -255,15 +255,10 @@ transform: translateY(-2px) scale(1.01);
 }
 
 .is-clickable:hover {
-  /* box-shadow: 0 8px 14px rgba(175, 19, 19, 0.06); */
   border: 1px solid #5b8cff;
-  /* transition: all 0.25s ease; */
 }
 .is-clickable:hover .hr-top-card-title{
-  min-height: 37px;
-}
-.is-clickable:hover .hr-overview-title{
-  min-height: 28px;
+  /* min-height: 34px; */
 }
 
 .hr-summary-wrapper {
@@ -272,8 +267,8 @@ transform: translateY(-2px) scale(1.01);
 
 .hr-summary-card {
   border-radius: 16px;
-  border: none;
-  min-height: 155px;
+  /* border: none; */
+  min-height: 160px;
   background: #f8f9fb;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
   transition: all 0.25s ease;
@@ -390,7 +385,7 @@ transform: translateY(-2px) scale(1.01);
   }
   @media only screen and (max-width: 1485px) {
     .hr-top-card-title {
-      min-height: 40px;    
+      min-height: 34px;    
     }
     .leave-badge,
     .mini-badge {
@@ -449,4 +444,6 @@ transform: translateY(-2px) scale(1.01);
     padding: 10px;
     margin: 0px 5px;
   }
-  
+ .ant-table-layout-fixed table{
+    table-layout: auto !important;
+ } 

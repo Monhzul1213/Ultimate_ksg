@@ -1,0 +1,183 @@
+th.column-header-left {
+  text-align: left !important;
+}
+
+.ant-table-header-column,
+.ant-table-column-sorters,
+.ant-table-column-title {
+  width: 100% !important;
+}
+
+.ant-table-column-title {
+  font-size: 12pt !important;
+  font-weight: bold !important;
+  color: #4f4f4f !important;
+}
+
+.ant-table-tbody {
+  font-size: 12pt !important;
+  font-weight: normal !important;
+  color: #6b747b !important;
+}
+
+a.grid-link:link,
+a.grid-link:visited {
+  color: #6b747b;
+}
+a.grid-link:hover,
+a.grid-link:active {
+  color: #00358d;
+}
+
+a.card-link:link,
+a.card-link:visited {
+  color: black;
+}
+a.card-link:hover,
+a.card-link:active {
+  color: #00358d;
+}
+
+.employee-view {
+  position: relative;
+  height: 100%;
+}
+
+.employee-view .employee-img-wrap {
+  width: 120px;
+  height: 123px;
+}
+.employee-img-wrap {
+  height: 100%;
+  position: absolute;
+  width: 120px;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+@media only screen and (max-width: 576px) {
+  .employee-img-wrap {
+    position: relative;
+    margin: 0 auto;
+  }
+}
+
+.employee-view .employee-img {
+  width: 120px;
+  height: 123px;
+}
+.employee-img {
+  cursor: pointer;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  width: 80px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.employee-view .employee-basic {
+  margin-left: 110px;
+  padding-right: 40px;
+  height: 100%;
+}
+.employee-basic {
+  margin-left: 140px;
+}
+@media only screen and (max-width: 576px) {
+  .employee-view .employee-basic {
+    margin-left: 0;
+    padding-right: 0;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .employee-basic {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+}
+
+@media only screen and (max-width: 1192px) {
+  .employee-info-left {
+    margin-bottom: 60px;
+    padding-bottom: 60px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .employee-info-left {
+    text-align: center;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+}
+.employee-pos {
+  bottom: 0px;
+  position: absolute;
+}
+
+@media only screen and (max-width: 576px) {
+  .employee-pos {
+    bottom: 0px;
+    position: relative;
+  }
+}
+
+.employee-view .emp-edit {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+p.employee-value {
+  font-size: 11pt;
+  color: #6b747b;
+  margin-bottom: 5px;
+}
+
+a.employee-value {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 5px;
+}
+
+.load-more {
+  display: flex;
+  margin: 20px auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.select-input-hei .ant-select-selection--single {
+  height: 52px;
+}
+
+.place .ant-select-selection__rendered {
+  line-height: 3.5;
+}
+.ant-card-small > .ant-card-body {
+  padding: 12px;
+  height: 100%;
+}
+.ant-row-flex {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
+}

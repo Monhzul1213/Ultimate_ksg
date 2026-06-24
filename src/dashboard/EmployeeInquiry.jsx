@@ -34,7 +34,7 @@ const { Text } = Typography;
 
 class FilterForm extends Component {
   render() {
-    const { form, onSubmitForm, baseData, loading } = this.props;
+    const { form, onSubmitForm, baseData, loading, fromDashboard } = this.props;
     const { getFieldDecorator } = form;
 
     return (
@@ -131,7 +131,7 @@ class FilterForm extends Component {
                     baseData.hrEmp_Status[1].ConstKey,
                 })(
                   <Select
-                    disabled={true}
+                    disabled={fromDashboard}
                     allowClear={true}
                     placeholder={"Статус"}
                     dropdownMatchSelectWidth={false}
@@ -193,30 +193,38 @@ var curIndex = -1;
 
 class EmployeeInquiry extends Component {
   constructor(props) {
-  super(props);
-  const dataType = localStorage.getItem("passedDataType"); 
-  let passedData = [];
+    super(props);
 
-  if (dataType === "new") {
-    passedData = JSON.parse(localStorage.getItem("passedData1")) || [];
-  } else if (dataType === "sack") {
-    passedData = JSON.parse(localStorage.getItem("passedData2")) || [];
+    // Read from localStorage (Dashboard-аас орсон үед)
+    const dataType = localStorage.getItem("passedDataType") || null;
+    let passedData = [];
+    try {
+      const storedData = localStorage.getItem("passedData");
+      if (storedData) {
+        passedData = JSON.parse(storedData);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
+    // Хуучин болон шинэ localStorage утгуудыг шууд цэвэрлэнэ
+    localStorage.removeItem("passedDataType");
+    localStorage.removeItem("passedData");
+    localStorage.removeItem("passedData1");
+    localStorage.removeItem("passedData2");
+
+    const LoggedSysuser = cookie.load("LoggedSysuser");
+
+    this.state = {
+      baseData: undefined,
+      loading: true,
+      LoggedSysuser,
+      viewType: "card",
+      queryID: "Web_Employees",
+      passedData,
+      dataType 
+    };
   }
-
-  console.log(passedData);
-  
-  const LoggedSysuser = cookie.load("LoggedSysuser");
-
-  this.state = {
-    baseData: undefined,
-    loading: true,
-    LoggedSysuser,
-    viewType: "card",
-    queryID: "Web_Employees",
-    passedData,
-    dataType 
-  };
-}
 
 
 
@@ -256,6 +264,41 @@ class EmployeeInquiry extends Component {
       });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location && prevProps.location && this.props.location.key !== prevProps.location.key) {
+      const dataType = localStorage.getItem("passedDataType") || null;
+      let passedData = [];
+      try {
+        const storedData = localStorage.getItem("passedData");
+        if (storedData) {
+          passedData = JSON.parse(storedData);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+
+      localStorage.removeItem("passedDataType");
+      localStorage.removeItem("passedData");
+      localStorage.removeItem("passedData1");
+      localStorage.removeItem("passedData2");
+
+      this.setState({
+        passedData,
+        dataType
+      }, () => {
+        const lockedStatus = this.getLockedStatus();
+        const { form } = this.formRef.props;
+
+        const defaultStatus = this.state.baseData && this.state.baseData.hrEmp_Status && this.state.baseData.hrEmp_Status[1] && this.state.baseData.hrEmp_Status[1].ConstKey;
+        form.setFieldsValue({
+          Status: lockedStatus || defaultStatus
+        });
+
+        this.onSubmitForm();
+      });
+    }
+  }
+
   getLockedStatus = () => {
     const { dataType } = this.state;
 
@@ -283,8 +326,6 @@ class EmployeeInquiry extends Component {
       })
       .then((res) => {
         const data = res.data;
-        console.log("Query data:", data, "PassedData:", this.state.passedData);
-
         if (data.retType !== 0) {
           this.setState({ loading: false });
           notification["error"]({
@@ -495,20 +536,25 @@ class EmployeeInquiry extends Component {
       return 24 / colProps[type];
     };
 
-const onClick = () => {
-  this.props.history.push("/HRDashboard");
-};
+    const onClick = () => {
+      this.props.history.push("/HRDashboard");
+    };
 
+    const fromDashboard = !!this.state.dataType;
 
     return (
       <div style={{ margin: "27px" }} className="spin-loading">
-        <div>
-          <div style={{ display: "flex", alignItems: "center", marginBottom: 20, flexFlow: 'row nowrap' }}>
-          <button style={{marginRight: 10, padding: "4px 10px", border: "none", borderRadius: "4px", background: "#1890ff", color: "#fff", cursor: "pointer" }} onMouseOver={(e) => (e.target.style.background = "#549ffaff")} onMouseOut={(e) => (e.target.style.background = "#1890ff")} onClick={onClick}>
-            <ArrowLeftOutlined onClick={onClick} style={{fontSize: 15}}/>
-          </button>
-          <h3>{"Dashboard /"}<Text color="#6b747b">{" Ажилтны дэлгэрэнгүй"}</Text></h3>
+        {fromDashboard ? <div>
+          <div style={{ display: "flex", alignItems: "center", marginBottom: 30, flexFlow: 'row' }}>
+            {/* {fromDashboard && ( */}
+              <button style={{ marginRight: 10, padding: "4px 10px", border: "none", borderRadius: "4px", background: "#1890ff", color: "#fff", cursor: "pointer" }} onMouseOver={(e) => (e.target.style.background = "#549ffaff")} onMouseOut={(e) => (e.target.style.background = "#1890ff")} onClick={onClick}>
+                <ArrowLeftOutlined onClick={onClick} style={{ fontSize: 15 }} />
+              </button>
+            {/* )} */}
+            {/* {!fromDashboard && <h3>{"Ажилтны лавлагаа"}</h3>} */}
+            <h4>Dashboard / <Text color="#6b747b">Ажилтны дэлгэрэнгүй</Text></h4>
           </div>
+
           <div
             style={{
               position: "absolute",
@@ -531,12 +577,42 @@ const onClick = () => {
             </Radio.Group>
           </div>
         </div>
+        :
+        <div>
+          <h3>Ажилтны лавлагаа</h3>
+          <h4 style={{ marginBottom: "30px" }}>
+            Хүний нөөц / Бүртгэл /<Text color="#6b747b">Ажилтны лавлагаа</Text>
+          </h4>
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              right: "27px",
+            }}
+          >
+            <Radio.Group
+              defaultValue={this.state.viewType}
+              onChange={(e) => {
+                this.setState({ viewType: e.target.value });
+              }}
+            >
+              <Radio.Button value="card">
+                <Icon type="appstore" />
+              </Radio.Button>
+              <Radio.Button value="grid">
+                <Icon type="menu" />
+              </Radio.Button>
+            </Radio.Group>
+          </div>
+        </div>}
+
         <Spin spinning={this.state.loading} className="spin-loading">
           <WrappedFilterForm
             wrappedComponentRef={this.filterFormRef}
             baseData={this.state.baseData}
             loading={this.state.loading}
             onSubmitForm={this.onSubmitForm}
+            fromDashboard={fromDashboard}
           />
           {this.state.viewType === "grid" ? (
             <GridView
@@ -562,9 +638,9 @@ const onClick = () => {
                                 <div className="employee-img-wrap">
                                   <div className="employee-img">
                                     <Link
-                                      to={{
-                                        pathname: `/Profile`,
-                                      }}
+                                      // to={{
+                                      //   pathname: `/Profile`,
+                                      // }}
                                     >
                                       <Avatar
                                         shape="circle"
@@ -597,7 +673,7 @@ const onClick = () => {
                                           height: "100%",
                                         }}
                                       >
-                                        <Link
+                                        {/* <Link
                                           to={{
                                             pathname: `/Profile`,
                                           }}
@@ -624,7 +700,23 @@ const onClick = () => {
                                           }}
                                         >
                                           {row.EmpName}
-                                        </Link>
+                                        </Link> */}
+                                        <p
+                                          className=" employee-value"
+                                          style={{
+                                            display: "block",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            whiteSpace: "nowrap",
+                                            maxWidth: "100%",
+                                            fontWeight: "bold",
+                                            fontSize: "16px",
+                                            color: "#0A5287",
+                                            marginBottom: "5px",
+                                          }}
+                                        >
+                                          {row.EmpName}
+                                        </p>
                                         <p
                                           className="employee-value"
                                           style={{
@@ -672,16 +764,16 @@ const onClick = () => {
                                             maxWidth: "75%",
                                           }}
                                         >
-                                          {row.Addr1 ? row.Addr1 : "-"}
+                                          {"-"}
                                         </p>
                                       </div>
                                     </Col>
                                   </Row>
                                 </div>
 
-                                <div className="emp-edit">
+                                {/* <div className="emp-edit">
                                   {dropDown(row, index)}
-                                </div>
+                                </div> */}
                               </div>
                             </Col>
                           </Row>

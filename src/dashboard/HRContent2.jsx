@@ -103,19 +103,19 @@ export default class HrContent2 extends React.Component {
 
               <div className="hr-stat-list">
                 <div className="hr-stat-row">
-                  <span className="hr-stat-label">Average</span>
+                  <span className="hr-stat-label">Дундаж</span>
                   <span className="hr-stat-value">{Number(AverageYears).toFixed(1)} жил</span>
                 </div>
                 <div className="hr-stat-row">
-                  <span className="hr-stat-label">Median</span>
+                  <span className="hr-stat-label">Медиан</span>
                   <span className="hr-stat-value">{Number(MedianYears).toFixed(1)} жил</span>
                 </div>
                 <div className="hr-stat-row">
-                  <span className="hr-stat-label">Max</span>
+                  <span className="hr-stat-label">Хамгийн их</span>
                   <span className="hr-stat-value">{Number(MaxYears).toFixed(1)} жил</span>
                 </div>
                 <div className="hr-stat-row">
-                  <span className="hr-stat-label">Min</span>
+                  <span className="hr-stat-label">Хамгийн бага</span>
                   <span className="hr-stat-value">{Number(MinYears).toFixed(1)} сар</span>
                 </div>
               </div>

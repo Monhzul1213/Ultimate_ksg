@@ -23,7 +23,10 @@ export default class HrContent8 extends React.Component {
       key: "RowName",
       fixed: "left",
       width: 160,
-      render: (text) => <span className="salary-row-name">{text}</span>,
+      render: (text) => 
+      <span className="salary-row-name" style={{marginLeft:   text === "ҮНДСЭН ЦАЛИН" || text === "ОЛГОВОЛ ЗОХИХ ЦАЛИН" || text === "Урьдчилгаа цалин" || text === "Сүүл цалин" ? 0 : 10}}>
+        {text}
+      </span>,
     },
     {
       title: "Jan",
