@@ -5,6 +5,24 @@ import "./HrContent.css";
 const { TabPane } = Tabs;
 
 export default class HrContent8 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMobile: window.innerWidth <= 768,
+    };
+  }
+
+  componentDidMount() {
+    this.handleResize = () => {
+      this.setState({ isMobile: window.innerWidth <= 768 });
+    };
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  }
+
   formatNumber = (value) => {
     if (value === null || value === undefined || value === "") return "";
 
@@ -16,12 +34,12 @@ export default class HrContent8 extends React.Component {
     }).format(num);
   };
 
-  getColumns = () => [
+  getColumns = (isMobile) => [
     {
       title: "",
       dataIndex: "RowName",
       key: "RowName",
-      fixed: "left",
+      fixed: isMobile ? false : "left",
       width: 160,
       render: (text) => 
       <span className="salary-row-name" style={{marginLeft:   text === "ҮНДСЭН ЦАЛИН" || text === "ОЛГОВОЛ ЗОХИХ ЦАЛИН" || text === "Урьдчилгаа цалин" || text === "Сүүл цалин" ? 0 : 10}}>
@@ -129,7 +147,7 @@ export default class HrContent8 extends React.Component {
       dataIndex: "TotalAmount",
       key: "TotalAmount",
       width: 140,
-      fixed: "right",
+      fixed: isMobile ? false : "right",
       align: "right",
       render: (value) => this.formatNumber(value),
     },
@@ -142,7 +160,8 @@ export default class HrContent8 extends React.Component {
       return <div></div>;
     }
 
-    const columns = this.getColumns();
+    const { isMobile } = this.state;
+    const columns = this.getColumns(isMobile);
 
     const groupedData = data.reduce((acc, item) => {
       const year = item.Yr ? String(item.Yr) : "No Year";

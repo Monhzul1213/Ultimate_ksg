@@ -37,7 +37,7 @@ export default class EmployeeDoc extends Component {
   componentDidMount() {
     this.setState({ loading: true });
     var BusinessObject = [];
-    BusinessObject.push({ FieldName: "EmpCode", Value: this.state.EmpCode });
+    BusinessObject.push({ FieldName: "EmpCode", Value: this.props.EmpCode });
     request
       .post("Execute_Query", {
         token: this.state.LoggedSysuser.token,

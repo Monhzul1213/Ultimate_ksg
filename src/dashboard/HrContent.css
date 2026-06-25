@@ -393,14 +393,20 @@ transform: translateY(-2px) scale(1.01);
       padding: 4px;
     }
   }
-  
+  @media only screen and (max-width: 1333px){
+    .hr-top-card-title {
+      font-size: 14px;
+      min-height: 26px;
+    }
+  }
+
   @media only screen and (max-width: 1198px) {
     .card-padding .ant-card-body {
       min-height: 103px;
     }
     .hr-top-card-title {
       font-size: 14px;
-      min-height: 32px;
+      min-height: 25px;
     }
     .leave-badge-group {
       gap: 6px;

@@ -62,7 +62,7 @@ export default class HrContent5 extends React.Component {
                     <div className="stat-item">
                       <span>Ажил таслалт</span>
                       <strong>{item.Absenteesim || 0}</strong>
-                      <small>хүн</small>
+                      <small>хүн өдөр</small>
                     </div>
 
                     <div className="stat-item">

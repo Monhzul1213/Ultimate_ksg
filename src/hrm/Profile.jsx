@@ -163,8 +163,6 @@ export default class Profile extends Component {
 
   render() {
     console.log(this.state);
-    console.log("cookie", this.state.cookieUser);
-    console.log("cookie", this.state.LoggedSysuser);
     var EmpDtl,
       FamilyMember,
       Education,
@@ -750,7 +748,7 @@ export default class Profile extends Component {
             </Row>
           </TabPane>
           <TabPane tab="Холбоотой файлууд" key="2">
-            <EmployeeDoc />
+            <EmployeeDoc EmpCode={this.state.EmpCode} />
           </TabPane>
           <TabPane tab="Нэмэлт мэдээлэл" key="3">
             <Footnote />
