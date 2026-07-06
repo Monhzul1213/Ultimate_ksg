@@ -140,12 +140,28 @@ export default class Time extends Component {
 
     const addColumns = [
       {
+        title: "Файлын нэр",
+        width: 100,
+        dataIndex: "Name",
+        key: "x",
+        align: "left",
+        className: "column-header-left",
+      },
+      {
+        title: "Тайлбар",
+        width: 100,
+        dataIndex: "Descr",
+        key: "x",
+        align: "left",
+        className: "column-header-left",
+      },
+      {
         title: "Үйлдэл",
         width: 100,
         dataIndex: "",
         key: "x",
         align: "right",
-        className: "column-header-left",
+        className: "column-header-right",
         render: (text, record, index) => dropDown(record, index),
       },
     ];
