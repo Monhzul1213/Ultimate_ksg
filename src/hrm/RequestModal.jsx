@@ -103,15 +103,15 @@ class App extends React.Component {
     var workDays = 0,
       weekend = 0;
     var date = moment(beginDate);
-    const { RestDays } = this.state.data;
+    const { RelaxDays } = this.state.data;
     while (workDays < days) {
       var isRestDate = false;
       var weekDay = date.isoWeekday();
       if (weekDay > 5) weekend++;
       else {
-        RestDays &&
-          RestDays.forEach((value) => {
-            if (moment(value.RestDate) === date) {
+        RelaxDays &&
+          RelaxDays.forEach((value) => {
+            if (moment(value.RestDate, dateFormat).isSame(date, "day")) {
               isRestDate = true;
               return;
             }
@@ -120,7 +120,7 @@ class App extends React.Component {
         else workDays++;
       }
       if (workDays < days) date.add(1, "days");
-    }
+    }    
     return date;
   };
 

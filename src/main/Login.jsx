@@ -36,7 +36,8 @@ class NormalLoginForm extends React.Component {
     cookie.remove("LoggedSysuser", { path: "/" });
 
     // Axios.get("https://app.lotteriahr.mn/get_inPICount.asmx/Get_Config")
-    Axios.get("https://app.khangroup.mn/get_inPICount.asmx/Get_Config")
+    // Axios.get("https://app.khangroup.mn/get_inPICount.asmx/Get_Config")
+    Axios.get("http://192.168.1.103:8011/get_inPICount.asmx/Get_Config")
 
       .then((response) => {
         const ret = response && response.data && response.data.retData;
@@ -47,7 +48,7 @@ class NormalLoginForm extends React.Component {
         console.error(error);
         this.setState({ companydata: [] });
       });
-  }
+  } 
 
   handleSubmit = (e) => {
     e.preventDefault();
