@@ -129,7 +129,8 @@ class compon extends React.Component {
               <img
                 src={this.state.collapsed ? LogoFile ? `data:image/png;base64,${LogoFile}` : logo1 : ReportHeaderLogo ? `data:image/png;base64,${ReportHeaderLogo}` : logo}
                 alt="Logo"
-                style={this.state.collapsed ? {cursor: "pointer", height: 40} : { cursor: "pointer" }}
+                style={{ cursor: "pointer", ...(this.state.collapsed ? { height: 40 } : !LogoFile ? { width: 120 } : {})
+                }}
               />
             </a>
           </div>
