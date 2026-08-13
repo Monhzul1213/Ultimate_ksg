@@ -36,8 +36,8 @@ class NormalLoginForm extends React.Component {
     cookie.remove("LoggedSysuser", { path: "/" });
 
     // Axios.get("https://app.lotteriahr.mn/get_inPICount.asmx/Get_Config")
-    // Axios.get("https://app.khangroup.mn/get_inPICount.asmx/Get_Config")
-    Axios.get("https://app.twin.mn/get_inPICount.asmx/Get_Config")
+    Axios.get("https://app.khangroup.mn/get_inPICount.asmx/Get_Config")
+    // Axios.get("https://app.twin.mn/get_inPICount.asmx/Get_Config")
 
       .then((response) => {
         const ret = response && response.data && response.data.retData;

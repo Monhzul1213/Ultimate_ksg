@@ -462,7 +462,7 @@ export default class EmpsLeave extends Component {
             <Tag color="#87d068">
               {this.state.baseData &&
                 this.state.baseData.Table1 &&
-                this.state.baseData.Table1[1].ValueStr1}
+                this.state.baseData.Table1[0].ValueStr1}
             </Tag>
           );
         case 2:
@@ -470,7 +470,7 @@ export default class EmpsLeave extends Component {
             <Tag color="#108ee9">
               {this.state.baseData &&
                 this.state.baseData.Table1 &&
-                this.state.baseData.Table1[2].ValueStr1}
+                this.state.baseData.Table1[1].ValueStr1}
             </Tag>
           );
         case 4:
@@ -478,7 +478,7 @@ export default class EmpsLeave extends Component {
             <Tag color="#f50">
               {this.state.baseData &&
                 this.state.baseData.Table1 &&
-                this.state.baseData.Table1[3].ValueStr1}
+                this.state.baseData.Table1[2].ValueStr1}
             </Tag>
           );
         case 0:

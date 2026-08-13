@@ -3,8 +3,8 @@ import query from "querystring";
 
 export default class PostRequest {
   // static host = "https://app.lotteriahr.mn/";
-  // static host = "https://app.khangroup.mn/";
-  static host = "https://app.twin.mn/";
+  static host = "https://app.khangroup.mn/";
+  // static host = "https://app.twin.mn/";
   static post(name, param) {
     return axios.post(
       this.host + "get_inPICount.asmx/" + name,
