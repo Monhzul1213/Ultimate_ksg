@@ -66,3 +66,13 @@
 .MainContent {
   min-height: 100vh;
 }
+
+.table_wrapper .ant-table-thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.table_wrapper .ant-table-body{
+	overflow: scroll !important;
+	max-height: 520px;
+}

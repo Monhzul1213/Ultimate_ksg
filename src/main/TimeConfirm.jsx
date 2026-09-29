@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Table,
   Input,
@@ -12,15 +12,144 @@ import {
   Col,
   Row,
   message,
+  Form,
+  Select,
+  DatePicker,
 } from "antd";
 import Highlighter from "react-highlight-words";
 import cookie from "react-cookies";
 import "./TimeConfirm.css";
-import axios from "axios";
-import request from "@/insurance/PostRequest.js";
+import "../hrm/Salaries.css";
 
+import request from "@/insurance/PostRequest.js";
+import moment from "moment";
+
+const { Option } = Select;
+const dateFormat = "YYYY.MM.DD";
 const { TextArea } = Input;
 const { Text } = Typography;
+
+class FilterForm extends Component {
+  render() {
+    const { form, onSubmitForm, baseData, loading } = this.props;
+    const { getFieldDecorator } = form;
+    var date = new Date(),
+      today =
+        date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+
+    return (
+      <Form onSubmit={onSubmitForm} autoComplete="off">
+        <Row gutter={[16, 16]} type="flex">
+          <Col xs={24} sm={24} md={24} lg={12} xl={8} xxl={4}>
+            <Form.Item style={{ marginBottom: 0 }}>
+              {getFieldDecorator("EmpFName")(
+                <Input
+                  disabled={loading}
+                  style={{ height: "52px" }}
+                  placeholder="Ажилтны нэр"
+                />
+              )}
+            </Form.Item>
+          </Col>
+          <Col xs={24} sm={24} md={24} lg={12} xl={8} xxl={4}>
+            <Form.Item style={{ marginBottom: 0 }}>
+              <div className="select-input-hei">
+                {getFieldDecorator("DepartmentID", {
+                  // initialValue:
+                  //   baseData &&
+                  //   baseData.Department &&
+                  //   baseData.Department.length > 0
+                  //     ? baseData.Department[0].DepartmentID
+                  //     : "",
+                })(
+                  <Select
+                    disabled={loading}
+                    type="flex"
+                    allowClear={true}
+                    placeholder="Хэлтэс сонгох"
+                    dropdownMatchSelectWidth={false}
+                    dropdownStyle={{ width: 500 }}
+                    className="place"
+                    showSearch
+                    optionFilterProp="children"
+                  >
+                    {baseData &&
+                      baseData.Department &&
+                      baseData.Department.map((department) => (
+                        <Option key={department.DepartmentID}>
+                          {department.Descr}
+                        </Option>
+                      ))}
+                  </Select>
+                )}
+              </div>
+            </Form.Item>
+          </Col>
+          <Col xs={24} sm={24} md={24} lg={12} xl={8} xxl={4}>
+            <Form.Item style={{ marginBottom: 0 }}>
+              {getFieldDecorator("BeginDate", {
+                initialValue: moment([moment().year(), moment().month()]),
+              })(
+                <DatePicker
+                  disabled={loading}
+                  placeholder="Эхлэх огноо"
+                  className="date-picker"
+                  style={{ width: "100%" }}
+                  allowClear={false}
+                  format={dateFormat}
+                />
+              )}
+            </Form.Item>
+          </Col>
+          <Col xs={24} sm={24} md={24} lg={12} xl={8} xxl={4}>
+            <Form.Item style={{ marginBottom: 0 }}>
+              {getFieldDecorator("EndDate", {
+                initialValue: moment(today, dateFormat),
+              })(
+                <DatePicker
+                  disabled={loading}
+                  placeholder="Дуусах огноо"
+                  className="date-picker"
+                  style={{ width: "100%" }}
+                  allowClear={false}
+                  format={dateFormat}
+                />
+              )}
+            </Form.Item>
+          </Col>
+          <Col
+            xs={24}
+            sm={24}
+            md={{ span: 24 }}
+            lg={{ span: 12 }}
+            xl={{ span: 8 }}
+            xxl={{ span: 4 }}
+          >
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                size="large"
+                disabled={loading}
+                style={{
+                  fontWeight: "bold",
+                  background: "#0A5287",
+                  borderWidth: "0px",
+                  height: "52px",
+                }}
+                block
+              >
+                ХАЙХ
+              </Button>
+            </Form.Item>
+          </Col>
+        </Row>
+      </Form>
+    );
+  }
+}
+ 
+const WrappedFilterForm = Form.create({ name: "filter_form" })(FilterForm);
 
 class compon extends React.Component {
   constructor(props) {
@@ -29,13 +158,47 @@ class compon extends React.Component {
 
     this.state = {
       cookieUser,
+      queryID: "HR_AcceptFinger",
+
     };
   }
 
-  componentDidMount() {
+  componentDidMount(record) {
     this.state.cookiedata = cookie.load("LoggedSysuser");
-    this.funcs.init();
+
+    request
+      .post("Employees_Initialize", {
+        token: this.state.cookiedata.token,
+      })
+      .then((res) => {
+        const data = res.data;
+        if (data.retType !== 0) {
+          this.setState({ loading: false });
+          notification["error"]({
+            message: "Анхаар",
+            description: data.retDesc,
+          });
+          return;
+        }
+        this.setState({ baseData: res.data.retData, loading: false });
+        this.onSubmitForm();
+      })
+      .catch((err) => {
+        this.setState({ loading: false });
+        console.error(err);
+      });
   }
+
+  onSubmitForm = (e) => {
+    if (e) e.preventDefault();
+    if (!this.filterFormRef) return;
+    const { form } = this.filterFormRef.props;
+    form.validateFields({ first: true }, (err, values) => {
+      if (!err) {
+        this.funcs.init(values);
+      }
+    });
+  };
 
   showModal = () => {
     this.setState({
@@ -227,15 +390,32 @@ class compon extends React.Component {
         });
       }
     },
-    init: () => {
+    init: (values) => {
+      var BusinessObject = [];
+      if (values) {
+        Object.entries(values).forEach(([key, value]) => {
+          if (key.includes("Date") && value) value = value.format(dateFormat);
+          if (value !== "" && value !== undefined && value !== null) {
+            BusinessObject.push({ FieldName: key, Value: value });
+          }
+        });
+      }
+      const replacer = (key, value) => typeof value === "undefined" ? null : value;
       this.setState({
         loading: true,
       });
       request
-        .post("getTsTimeFingerRequest", {
+        .post("Execute_Query", {
           token: this.state.cookiedata.token,
           pName: this.state.cookiedata.EmpCode,
           sheetdate: "Azzaya",
+          json: JSON.stringify(
+          {
+            QueryID: this.state.queryID,
+            BusinessObject,
+          },
+          replacer
+        ),
         })
         .then(this.funcs.initSucc)
         .catch(this.funcs.initErr);
@@ -298,6 +478,7 @@ class compon extends React.Component {
         dataIndex: "EmpCode",
         title: "Ажилтны код",
         align: "center",
+        width: 150,
         filters: empCodeFilters,
         onFilter: (value, record) => record.EmpCode === value,
       },
@@ -306,6 +487,7 @@ class compon extends React.Component {
         dataIndex: "EmpFullname",
         title: "Ажилтны нэр",
         align: "center",
+        width: 170,
         filters: empFullnameFilters,
         onFilter: (value, record) => record.EmpFullname === value,
       },
@@ -314,6 +496,7 @@ class compon extends React.Component {
         dataIndex: "Descr",
         title: "Хэлтэс",
         align: "center",
+        width: 250,
         filters: descrFilters,
         onFilter: (value, record) => record.Descr === value,
       },
@@ -322,6 +505,7 @@ class compon extends React.Component {
         dataIndex: "PosName",
         title: "Албан тушаал",
         align: "center",
+        width: 300,
         filters: posFilters,
         onFilter: (value, record) => record.PosName === value,
       },
@@ -330,6 +514,7 @@ class compon extends React.Component {
         dataIndex: "SheetDate",
         title: "Огноо",
         align: "center",
+        width: 120,
         defaultSortOrder: "descend",
         sorter: (a, b) => a.SheetDate > b.SheetDate,
         sortDirections: ["descend", "ascend"],
@@ -377,6 +562,7 @@ class compon extends React.Component {
         key: "ReasonDescr",
         dataIndex: "ReasonDescr",
         title: "Тайлбар",
+        width: 400,
         align: "left",
       },
       {
@@ -384,6 +570,7 @@ class compon extends React.Component {
         dataIndex: "CheckInTime",
         title: "Ирсэн",
         align: "center",
+        width: 100,
         render: (a, i) => {
           return (
             <Tag
@@ -400,6 +587,7 @@ class compon extends React.Component {
         dataIndex: "CheckOutTime",
         title: "Явсан",
         align: "center",
+        width: 100,
         render: (a, i) => {
           return (
             <Tag
@@ -415,6 +603,7 @@ class compon extends React.Component {
         key: "RegDate",
         dataIndex: "RegDate",
         title: "Хүсэлт гаргасан",
+        width: 180,
         align: "center",
       },
       {
@@ -422,6 +611,7 @@ class compon extends React.Component {
         dataIndex: "Allow",
         title: "Батлах",
         fixed: "right",
+        width: 120,
         align: "center",
         render: (a, i) => {
           const { activeRow } = this.state;
@@ -573,7 +763,6 @@ class compon extends React.Component {
   tableData = { data: [] };
 
   render() {
-    console.log(this.state.activeRow);
     let { sortedInfo, filteredInfo } = this.state;
     sortedInfo = sortedInfo || {};
     filteredInfo = filteredInfo || {};
@@ -587,6 +776,12 @@ class compon extends React.Component {
             -1,
           )}`}</Text>
         </h4>
+        <WrappedFilterForm
+          wrappedComponentRef={(inst) => (this.filterFormRef = inst)}
+          baseData={this.state.baseData}
+          loading={this.state.loading}
+          onSubmitForm={this.onSubmitForm}
+        />
         <Table
           columns={this.getColumns()}
           dataSource={this.tableData.data}
@@ -602,7 +797,7 @@ class compon extends React.Component {
             index % 2 === 0 ? "table-row-even" : "table-row-odd"
           }
           size={this.props.size ? this.props.size : "default"}
-          scroll={{ x: "max-content" }}
+          scroll={{ x: "max-content", y: "calc(100vh - 400px)" }}
           pagination={{ pageSize: 10 }}
           // style={{ background: "#fff" }}
           // scroll={{ x: 100 }}
