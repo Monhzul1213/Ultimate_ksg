@@ -419,13 +419,22 @@ export default class TimeRequestInquiry extends Component {
         key: "ReasonID",
         dataIndex: "ReasonID",
         title: "Шалтгааны код",
+        align: "left",        
+        width: 150,
+      },
+      {
+        key: "TSReasonReascr",
+        dataIndex: "TSReasonReascr",
+        title: "Шалтгааны нэр",
         align: "left",
+        width: 150,
       },
       {
         key: "ReasonDescr",
         dataIndex: "ReasonDescr",
-        title: "Шалтгааны нэр",
+        title: "Тайлбар",
         align: "left",
+        width: 200,
       },
       {
         key: "CheckInTime",

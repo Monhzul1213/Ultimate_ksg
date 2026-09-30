@@ -39,8 +39,8 @@ class FilterForm extends Component {
 
     return (
       <Form onSubmit={onSubmitForm} autoComplete="off">
-        <Row gutter={[16, 16]} type="flex">
-          <Col xs={24} sm={24} md={24} lg={12} xl={8} xxl={4}>
+        <Row gutter={[20, 12]} type="flex">
+          <Col xs={24} sm={24} md={12} lg={8} xl={8} xxl={5}>
             <Form.Item style={{ marginBottom: 0 }}>
               {getFieldDecorator("EmpFName")(
                 <Input
@@ -48,10 +48,10 @@ class FilterForm extends Component {
                   style={{ height: "52px" }}
                   placeholder="Ажилтны нэр"
                 />
-              )}
+              )} 
             </Form.Item>
           </Col>
-          <Col xs={24} sm={24} md={24} lg={12} xl={8} xxl={4}>
+          <Col xs={24} sm={24} md={12} lg={8} xl={8} xxl={5}>
             <Form.Item style={{ marginBottom: 0 }}>
               <div className="select-input-hei">
                 {getFieldDecorator("DepartmentID", {
@@ -85,7 +85,7 @@ class FilterForm extends Component {
               </div>
             </Form.Item>
           </Col>
-          <Col xs={24} sm={24} md={24} lg={12} xl={8} xxl={4}>
+          <Col xs={24} sm={24} md={12} lg={8} xl={8} xxl={5}>
             <Form.Item style={{ marginBottom: 0 }}>
               {getFieldDecorator("BeginDate", {
                 initialValue: moment([moment().year(), moment().month()]),
@@ -101,7 +101,7 @@ class FilterForm extends Component {
               )}
             </Form.Item>
           </Col>
-          <Col xs={24} sm={24} md={24} lg={12} xl={8} xxl={4}>
+          <Col xs={24} sm={24} md={12} lg={8} xl={8} xxl={5}>
             <Form.Item style={{ marginBottom: 0 }}>
               {getFieldDecorator("EndDate", {
                 initialValue: moment(today, dateFormat),
