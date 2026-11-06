@@ -99,6 +99,7 @@ class NormalLoginForm extends React.Component {
         Name: "Price",
         Password: 'Price123',
         device: navigator.userAgent.replace(/;/g, ""),
+        cpnyId: this.state.companyId,
       })
       .then((loginRes) => {
         const token =
